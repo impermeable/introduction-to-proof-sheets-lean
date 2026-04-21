@@ -2,14 +2,7 @@
 
 ## Quickstart
 
-1. Download the [exercises](https://github.com/impermeable/introduction-to-proofs-sheets-lean/archive/refs/heads/main.zip) and unzip them in a new folder.
-2. Go to [https://vscode.dev?enable-coi](https://vscode.dev?enable-coi) using Google Chrome or Chromium.
-3. Go to extensions (Ctrl+Shift+x), search for Waterproof and install it (choose to "trust" the extension).
-4. Go to files (Ctrl+Shift+e), click "Open folder" and choose the folder from step 1 (choose to "trust" the folder).
-5. If the browser asks for permission to view or edit files in that location,
-allow this.
-6. Open the `lecture1/sheet1_conjunction.lean` file. 
-7. If everything installed correctly, you should see a "Goal" window on the right, which shows what is left to prove when you click in the text of proofs.
+TODO
 
 ## About
 
