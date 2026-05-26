@@ -8,6 +8,11 @@ open Verbose.NameLess
 
 #doc (WaterproofGenre) "Even and Perfect Square" =>
 
+Below are examples of how you can show that a certain number is even or a perfect square.
+Showing `n is even` is done by proving that `n = m + m` for some `m`, as shown below.
+Showing `n is square` is done by proving that `n = m * m` for some `m`, as shown below.
+When typing `We compute`, Waterproof will try to verify that a numerical (in)equality, `6 = 3 + 3` or `9 = 3 * 3` in our case, is correct using basic manipulations.
+
 ```lean
 Example "showing_even"
   Given:
@@ -30,6 +35,8 @@ Proof:
 QED
 ```
 
+Using these examples, we can prove Example 1.1.22 from the book, as shown below.
+
 ```lean
 Example "1.1.22"
   Given: (n : ℤ)
@@ -47,6 +54,8 @@ Proof:
       Since n = 2 we conclude that n = 1 + 1
 QED
 ```
+
+Now do the following exercise to practice proving that a number is even or a perfect square.
 
 ::::multilean
 ```lean
