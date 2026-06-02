@@ -1,0 +1,22 @@
+name = "introduction-to-proofs-sheets"
+defaultTargets = ["Bewijzen"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.verso.code.warnLineLength = 120
+
+[[require]]
+name = "WaterproofGenre"
+git = "https://github.com/impermeable/waterproof-genre.git"
+rev = "feature/smaller-genre"
+
+[[require]]
+name = "verbose-lean4"
+git = "https://github.com/impermeable/verbose-lean4.git"
+rev = "update/v4.29.0-rc6"
+
+
+[[lean_lib]]
+name = "Bewijzen"
