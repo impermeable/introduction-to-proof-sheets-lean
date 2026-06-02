@@ -1,0 +1,15 @@
+import Bewijzen.Customlib
+import Bewijzen.Customlib.Integers
+import Bewijzen.Customlib.Rational
+import Bewijzen.Customlib.Reals
+import Bewijzen.Lecture1.sheet1_conjunction
+import Bewijzen.Lecture1.sheet2_disjunction
+import Bewijzen.Lecture1.sheet3_even_square
+import Bewijzen.Lecture2.Sheet1Implication
+import Bewijzen.Lecture2.Sheet2Biconditional
+import Bewijzen.Lecture2.sheet3_negation
+import Bewijzen.Lecture2.sheet4_excluded_middle
+import Bewijzen.Lecture2.sheet5_forall
+import Bewijzen.Lecture2.sheet6_exists
+import Bewijzen.Lecture2.sheet7_unique_exists
+import Bewijzen.Lecture2.sheet8_quantifier_alternation
