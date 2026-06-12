@@ -42,8 +42,10 @@ QED
 ::::
 
 To prove conjunctions we first type `Let's first prove that [left proposition]`, after which we demonstrate that the left proposition is true using a subproof. Then we type `Let's now prove that [right proposition]`, and demonstrate that the right proposition is true using another subproof.
-These subproofs begin with a bullet point, using `·` as bullet symbols (insert these by typing `\.`).
+These subproofs begin with a bullet point, using `·` as bullet symbols.
 We conclude each subproof by typing `We conclude by hypothesis`, since each of the propositions `p`, `q` and `r` is included in our assumptions.
+
+The bullet symbol `·` can be inserted by typing `\.` and then pressing space or tab. Similarly, the `∧` symbol can be inserted by typing `\and`. You'll see more special symbols appear throughout the sheets, and each of those can be inserted using a combination that starts with `\`. To see how to write a specific symbol, open the Waterproof menu on the left, then the "Symbols" panel, and hover over a symbol.
 
 ```lean
 Example "1.1.8"
