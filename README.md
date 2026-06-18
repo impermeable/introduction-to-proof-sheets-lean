@@ -2,7 +2,7 @@
 
 ## Quickstart
 
-TODO
+Install the `Waterproof` extension in Visual Studio Code and open this folder using File -> Open Folder. Then open the worksheets in the Bewijzen/Lecture* folders.
 
 ## About
 
@@ -14,3 +14,4 @@ These exercises are available under Creative Commons Attribution-ShareAlike 4.0.
 If you want to contribute more exercises or want to have the solutions for use in teaching, reach out to Pim Otte (p.j.otte@uu.nl).
 
 Waterproof is educational software designed to help students with learning the skill of proving mathematical statements. See [here](https://impermeable.github.io/) for more information.
+These exercises are implemented with [Verbose Lean](https://github.com/PatrickMassot/verbose-lean4).
