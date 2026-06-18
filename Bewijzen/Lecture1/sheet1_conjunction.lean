@@ -14,7 +14,7 @@ These sheets are designed to accompany the textbook Infinite Descent into Mathem
 
 Whenever you have a question about a mathematical concept, refer to the textbook. If you have a question about how to use Waterproof, first check these sheets. If you are still unsure, ask your teacher.
 
-Waterproof is a software developed to construct and verify mathematical proofs using a computer. You write your proofs in the input fields, and the system checks their correctness and provides feedback on any mistakes.
+Waterproof is software developed to construct and verify mathematical proofs using a computer. You write your proofs in the input fields, and the system checks their correctness and provides feedback on any mistakes.
 
 These sheets include examples from the textbook as well as additional original examples. Exercises and examples taken directly from the textbook are named accordingly. For instance, the example below is named `1.1.1`, which corresponds to Example 1.1.1 in the textbook.
 
