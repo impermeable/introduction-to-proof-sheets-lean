@@ -2,7 +2,7 @@
 
 ## Quickstart
 
-Install the `Waterproof` extension in Visual Studio Code and open this folder using File -> Open Folder. Then open the worksheets.
+Install the `Waterproof` extension in Visual Studio Code and open this folder using File -> Open Folder. Then open the worksheets in the Bewijzen/Lecture* folders.
 
 ## About
 
