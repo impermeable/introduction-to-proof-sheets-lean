@@ -1,8 +1,8 @@
 /-
   Integer lemmas for Waterproof exercise sheets.
 
-  Even/odd parity notation, witness extraction, arithmetic closure,
-  and miscellaneous integer identities.
+  Even/odd parity notation, witness extraction, addition/multiplication
+  parity rules, and miscellaneous integer identities.
 -/
 
 import Verbose.English.All

@@ -1,5 +1,6 @@
 import WaterproofGenre
 import Bewijzen.Customlib.Reals
+import Bewijzen.Customlib.Lists
 
 open WaterproofGenre
 
@@ -9,7 +10,8 @@ A statement `∃! x, P x` means there exists a unique `x` for which `P x` holds.
 To prove it, use `Let's prove that a works`, then prove `P a`, and then prove `∀ y, P y → y = a`.
 
 ```lean
-configureAnonymousCaseSplittingLemmas le_or_gt lt_or_gt_of_ne lt_or_eq_of_le eq_or_lt_of_le Classical.em
+configureAnonymousCaseSplittingLemmas le_or_gt lt_or_gt_of_ne lt_or_eq_of_le eq_or_lt_of_le caseSplittingClassical
+addAnonymousGoalSplittingLemma squareRoot
 ```
 
 ```lean
