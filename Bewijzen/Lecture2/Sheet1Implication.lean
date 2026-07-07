@@ -40,8 +40,12 @@ Proof:
   Since x is rational we get n : ℤ and d : ℤ such that d ≠ 0 and x = n / d
   Since x + y is rational we get m : ℤ and e : ℤ such that e ≠ 0 and x + y = m / e
   Let's prove that y is rational
-  Since x + y = m / e and x = n / d we get that y = m / e - n / d
-  Since y = m / e - n / d, e ≠ 0 and d ≠ 0 we get that y = (m * d - n * e) / (e * d)
+  Fact : y = (m * d - n * e) / (e * d) by
+    Calc
+      y = (x + y) - x by computation
+      _ = m/e - x since x + y = m/e
+      _ = m/e - n/d since x = n/d
+      _ = (m * d - n * e) / (e * d) since e ≠ 0 and d ≠ 0
   Since e ≠ 0 and d ≠ 0 we get that e * d ≠ 0
   Since e * d ≠ 0 and y = (m * d - n * e) / (e * d) we conclude that y is rational
 QED

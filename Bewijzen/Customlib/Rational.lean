@@ -51,14 +51,12 @@ lemma rational_from_ints {y : ℝ} {n d : ℤ} (_ : d ≠ 0) (h2 : y = ((n : ℝ
   exact h2.symm
 
 -- Combine two integer fractions into one: m/e - n/d = (m*d - n*e) / (e*d).
-lemma int_fractions_combine {y : ℝ} {m e n d : ℤ}
-  (h1 : y = (m:ℝ) / e - (n:ℝ) / d) (he : e ≠ 0) (hd : d ≠ 0) : y = ((m:ℝ)*(d:ℝ) - (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ)) := by
+lemma int_fractions_combine {m e n d : ℤ}
+  (he : e ≠ 0) (hd : d ≠ 0) : (m:ℝ) / e - (n:ℝ) / d = ((m:ℝ)*(d:ℝ) - (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ)) := by
   have h_e : (e : ℝ) ≠ 0 := by exact_mod_cast he
   have h_d : (d : ℝ) ≠ 0 := by exact_mod_cast hd
-  exact calc y = (m:ℝ) / e - (n:ℝ) / d := h1
-             _ = ((m:ℝ)*(d:ℝ) - (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ)) := by
-               rw [div_sub_div _ _ h_e h_d]
-               ring
+  rw [div_sub_div _ _ h_e h_d]
+  ring
 
 -- Rationality from an expanded integer-fraction form.
 lemma rational_from_unannotated_comb {y : ℝ} {m d n e : ℤ}
@@ -109,8 +107,8 @@ lemma rational_of_two_mul {x : ℝ} (_ : IsRational (2 * x)) : IsRational x := b
 -- ══════════════════════════════════════════════════════════════
 
 -- Negation: if -x = n/d then x = -n/d.
-lemma eq_neg_frac_of_neg_eq_frac {x : ℝ} {n d : ℤ} (h : -x = n / d) : x = (-n : ℤ) / d := by
-  have key : (-n : ℤ) / d = -(n / d : ℝ) := by push_cast [neg_div]; ring
+lemma eq_neg_frac_of_neg_eq_frac {x : ℝ} {n d : ℤ} (h : -x = n / d) : x = -(↑n : ℝ) / ↑d := by
+  rw [neg_div]
   linarith
 
 -- Negation: if d ≠ 0 and -x = n/d then x is rational.
@@ -137,8 +135,7 @@ lemma ne_zero_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (h : 1 / x = n 
   exact hx h
 
 -- Reciprocal: if x ≠ 0 and n ≠ 0 and 1/x = n/d then x = d/n.
--- hx and hn are implicit so Verbose's "Since 1/x = n/d we get that x = d/n" works.
-lemma eq_of_recip_frac {n d : ℤ} {x : ℝ} {hx : x ≠ 0} {hn : n ≠ 0} (h : 1 / x = n / d) : x = d / n := by
+lemma eq_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (hn : n ≠ 0) (h : 1 / x = n / d) : x = d / n := by
   have hn' : (n : ℝ) ≠ 0 := Int.cast_ne_zero.mpr hn
   have hd' : (d : ℝ) ≠ 0 := by
     intro hd_zero

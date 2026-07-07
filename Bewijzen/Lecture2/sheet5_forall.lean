@@ -5,6 +5,7 @@ import Bewijzen.Customlib.Rational
 
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 
 addAnonymousGoalSplittingLemma rational_add
 addAnonymousGoalSplittingLemma rational_of_eq
@@ -33,7 +34,10 @@ Example "1.2.11"
   Conclusion: n * n is odd
 Proof:
   Since n is odd we get k such that n = 2 * k + 1
-  Since n = 2 * k + 1 we get that n * n = 2 * (2 * k * k + 2 * k) + 1
+  Fact : n * n = 2 * (2 * k * k + 2 * k) + 1 by
+    Calc
+      n * n = (2 * k + 1) * (2 * k + 1) since n = 2 * k + 1
+      _ = 2 * (2 * k *k + 2 * k) + 1 by computation
   Since n * n = 2 * (2 * k * k + 2 * k) + 1 we conclude that n * n is odd
 QED
 ```

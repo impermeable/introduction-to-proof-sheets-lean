@@ -36,7 +36,8 @@ Proof:
   Since c ∣ b we get n such that b = c * n
   Since b ∣ a we get m such that a = b * m
   Let's prove that n * m works
-  Since b = c * n and a = b * m we conclude that a = c * (n * m)
+  Since b = c * n and a = b * m we get that a = (c * n) * m
+  Since a = (c * n) * m we conclude that a = c * (n * m)
 QED
 ```
 ::::

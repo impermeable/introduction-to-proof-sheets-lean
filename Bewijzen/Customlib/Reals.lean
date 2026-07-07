@@ -119,7 +119,7 @@ lemma Ico_sub_Ioc_forward {a b c d : ℝ} (hab : a < b) (_hcd : c < d)
   constructor
   · exact had.1
   · by_contra hbd
-    push_neg at hbd
+    push Not at hbd
     have hda : a ≤ d := had.2
     have hm : (d + b) / 2 ∈ Set.Ico a b := by constructor <;> linarith
     have := h hm
@@ -132,7 +132,7 @@ lemma Ico_sub_Ioc_forward_b_le_d' {a b c d : ℝ} {hab : a < b}
   have ha' : a ∈ Set.Ioc c d := h ha
   have ha_le_d : a ≤ d := ha'.2
   by_contra hbd
-  push_neg at hbd
+  push Not at hbd
   have hm : (d + b) / 2 ∈ Set.Ico a b := by constructor <;> linarith
   have hcd := h hm
   linarith [hcd.2]

@@ -79,7 +79,8 @@ Proof:
       Let's prove it's contradictory
       Since a is odd we get k such that a = 2 * k + 1
       Since b is odd we get l such that b = 2 * l + 1
-      Since a = 2 * k + 1 and b = 2 * l + 1 we get that a * b = 2 * (2 * k * l + k + l) + 1
+      Since a = 2 * k + 1 and b = 2 * l + 1 we get that a * b = (2 * k + 1) * (2 * l + 1)
+      Since a * b = (2 * k + 1) * (2 * l + 1) we get that a * b = 2 * (2 * k * l + k + l) + 1
       Since a * b = 2 * (2 * k * l + k + l) + 1 we get that a * b is odd
       Since a * b is even we get that ¬(a * b is odd)
       It suffices to prove that False

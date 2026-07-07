@@ -1,6 +1,8 @@
 import WaterproofGenre
 import Verbose.English.All
 
+addAnonymousFactSplittingLemma LogicElims
+
 open WaterproofGenre
 
 #doc (WaterproofGenre) "Biconditional" =>
