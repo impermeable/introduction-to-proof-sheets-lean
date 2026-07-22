@@ -14,8 +14,8 @@ rev = "feature/smaller-genre"
 
 [[require]]
 name = "verbose-lean4"
-git = "https://github.com/impermeable/verbose-lean4.git"
-rev = "update/v4.29.0-rc6"
+git = "https://github.com/PatrickMassot/verbose-lean4.git"
+rev = "v4.31.0"
 
 
 [[lean_lib]]
