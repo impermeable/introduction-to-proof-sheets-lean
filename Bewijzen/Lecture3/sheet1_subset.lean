@@ -4,6 +4,7 @@ import Bewijzen.Customlib.Reals
 import Bewijzen.Customlib.Lists
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 open scoped Bewijzen.IntervalNotation
 
 configureAnonymousCaseSplittingLemmas caseSplittingClassical

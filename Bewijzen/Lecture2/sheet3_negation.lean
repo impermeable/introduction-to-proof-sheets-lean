@@ -4,6 +4,7 @@ import Bewijzen.Customlib.Rational
 
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 
 addAnonymousGoalSplittingLemma rational_witnesses_int
 addAnonymousGoalSplittingLemma rational_from_ints
@@ -15,32 +16,35 @@ addAnonymousGoalSplittingLemma eq_of_recip_frac
 
 #doc (WaterproofGenre) "Negation" =>
 
-Negation is defined as follows: `¬A` means `A ⇒ False`.
+Negation is defined as follows: `¬p` means `p ⇒ False`.
 
-To prove a negation, use `Assume that A` and then prove a contradiction.
-To derive a contradiction, first write `It suffices to prove that False` and then conclude `False` from the contradicting hypotheses.
+To prove a negation, you can use `Assume that q` and then prove a contradiction.
+
+In Waterproof, to prove a contradiction, you need assumptions that contradict each other, and then type `We conclude by contradicting ¬q and q`.
+
+An example is shown below.
 
 ```lean
 Example "1.1.54"
   Given: (p q : Prop)
   Assume:
-  Conclusion: (p ⇒ q) ⇒ ¬q ⇒ ¬p
+  Conclusion: (p ⇒ q) ⇒ (¬q ⇒ ¬p)
 Proof:
-  Assume that p ⇒ q
-  Assume that ¬q
+  Assume that p ⇒ q and ¬q
   Assume that p
   Since p ⇒ q and p we get that q
-  It suffices to prove that False
-  Since ¬q and q we conclude that False
+  We conclude by contradicting ¬q and q
 QED
 ```
+
+Below are two exercises using negations.
 
 ::::multilean
 ```lean
 Exercise "1.1.56"
   Given: (p q : Prop)
   Assume:
-  Conclusion: (p ⇒ ¬q) ⇒ q ⇒ ¬p
+  Conclusion: (p ⇒ ¬q) ⇒ (q ⇒ ¬p)
 Proof:
 ```
 :::input
@@ -58,7 +62,7 @@ QED
 Exercise "1.1.57"
   Given: (p q : Prop)
   Assume:
-  Conclusion: ¬p ⇒ ¬q ⇒ ¬(p ∨ q)
+  Conclusion: ¬p ⇒ (¬q ⇒ ¬(p ∨ q))
 Proof:
 ```
 :::input
@@ -71,7 +75,8 @@ QED
 ```
 ::::
 
-Below are exercises involving irrational numbers. Recall that a real number is irrational if it is not rational.
+Below are exercises involving irrational numbers and proof by contradiction.
+Remember that a real number is irrational if it is not rational.
 
 ::::multilean
 ```lean
@@ -96,7 +101,7 @@ QED
 Exercise "1.1.58b"
   Given: (x : ℝ)
   Assume:
-  Conclusion: x ≠ 0 ⇒ x is irrational ⇒ 1 / x is irrational
+  Conclusion: x ≠ 0 ⇒ (x is irrational ⇒ 1 / x is irrational)
 Proof:
 ```
 :::input

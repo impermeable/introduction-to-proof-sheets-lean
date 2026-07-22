@@ -58,11 +58,26 @@ lemma int_fractions_combine {m e n d : ℤ}
   rw [div_sub_div _ _ h_e h_d]
   ring
 
+-- Add two integer fractions into one: m/e - n/d = (m*d - n*e) / (e*d).
+lemma int_fraction_sum {y : ℝ} {m e n d : ℤ}
+  (h1 : y = (m:ℝ) / e + (n:ℝ) / d) (he : e ≠ 0) (hd : d ≠ 0) : y = ((m:ℝ)*(d:ℝ) + (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ)) := by
+  have h_e : (e : ℝ) ≠ 0 := by exact_mod_cast he
+  have h_d : (d : ℝ) ≠ 0 := by exact_mod_cast hd
+  simp [mul_comm, div_add_div _ _ h_e h_d, h1]
+
 -- Rationality from an expanded integer-fraction form.
 lemma rational_from_unannotated_comb {y : ℝ} {m d n e : ℤ}
   (_ : e * d ≠ 0)
   (hy : y = ((m:ℝ)*(d:ℝ) - (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ))) : IsRational y := by
   use (((m*d - n*e : ℤ) : ℚ) / ((e*d : ℤ) : ℚ))
+  push_cast
+  exact hy.symm
+
+-- Rationality from an expanded integer-fraction form.
+lemma rational_from_unannotated_sum {y : ℝ} {m d n e : ℤ}
+  (_ : e * d ≠ 0)
+  (hy : y = ((m:ℝ)*(d:ℝ) + (n:ℝ)*(e:ℝ)) / ((e:ℝ)*(d:ℝ))) : IsRational y := by
+  use (((m*d + n*e : ℤ) : ℚ) / ((e*d : ℤ) : ℚ))
   push_cast
   exact hy.symm
 

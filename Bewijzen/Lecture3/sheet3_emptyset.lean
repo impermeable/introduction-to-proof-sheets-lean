@@ -5,6 +5,7 @@ import Bewijzen.Customlib.Sets
 import Bewijzen.Customlib.Lists
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 open scoped Bewijzen.IntervalNotation
 
 configureAnonymousCaseSplittingLemmas caseSplittingClassical
@@ -23,7 +24,7 @@ Example "2.1.22"
 Proof:
   It suffices to prove that ∀ x, x ∈ [0] ⇒ False
   Fix x ∈ [0]
-  Since x < 0 we conclude that False
+  We conclude by contradicting x < 0
 QED
 ```
 
@@ -108,11 +109,11 @@ Proof:
   Let's first prove that E ⊆ E'
   · Fix x ∈ E
     Let's prove it's contradictory
-    Since E = ∅ and x ∈ E we conclude that False
+    We conclude by contradicting E = ∅ and x ∈ E
   Let's now prove that E' ⊆ E
   · Fix x ∈ E'
     Let's prove it's contradictory
-    Since E' = ∅ and x ∈ E' we conclude that False
+    We conclude by contradicting E' = ∅ and x ∈ E'
 QED
 ```
 

@@ -4,12 +4,14 @@ import Bewijzen.Customlib.Integers
 
 
 open WaterproofGenre
+open Verbose.NameLess
+
 addAnonymousGoalSplittingLemma expand_cube_succ
+
 #doc (WaterproofGenre) "Exists" =>
 
-A statement `∃ x, P x` means that there exists some `x` for which `P x` holds.
+Example 1.2.25 shows how you can prove an existentially quantified statement.
 To prove such a statement, use `Let's prove that a works` for a specific `a`, then prove `P a`.
-To use a hypothesis `∃ x, P x`, write `Since ∃ x, P x we get x such that P x`.
 
 ```lean
 Example "1.2.25"
@@ -38,6 +40,9 @@ Proof:
 QED
 ```
 
+In Waterproof, the notation `a ∣ b` for integers `a` and `b` means that `∃ m : ℤ, b = a * m`.
+Use this to prove the following fact.
+
 ::::multilean
 ```lean
 Exercise "1.2.28"
@@ -56,15 +61,25 @@ QED
 ```
 ::::
 
+We write `It suffices to prove that ...` to transform the goal from a divisibility expression
+to the form with an existential quantifier.
+
+To use a hypothesis `∃ x, P x`, write `Since ∃ x, P x we get x such that P x`.
+
+
 ```lean
 Example "1.2.31"
   Given: (n : ℤ)
   Assume: (_ : 3 ∣ n ^ 3)
   Conclusion: 3 ∣ (n + 1) ^ 3 - 1
 Proof:
-  Since 3 ∣ n ^ 3 we get m such that n ^ 3 = 3 * m
+  Since 3 ∣ n ^ 3 we get that ∃ a : ℤ, n ^ 3 = 3 * a
+  Since ∃ a : ℤ, n ^ 3 = 3 * a we get m such that n ^ 3 = 3 * m
   It suffices to prove that ∃ k : ℤ, (n + 1) ^ 3 - 1 = 3 * k
   Let's prove that m + n ^ 2 + n works
   Since n ^ 3 = 3 * m we conclude that (n + 1) ^ 3 - 1 = 3 * (m + n ^ 2 + n)
 QED
 ```
+
+
+

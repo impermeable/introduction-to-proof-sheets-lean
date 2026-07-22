@@ -5,6 +5,7 @@ import Bewijzen.Customlib.Sets
 import Bewijzen.Customlib.Lists
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 open scoped Set
 
 configureAnonymousCaseSplittingLemmas caseSplittingClassical
@@ -28,7 +29,7 @@ Lemma exercise_2_1_27 "2.1.27"
 Proof:
   Fix x ∈ (∅ : Set U)
   Let's prove it's contradictory
-  Since x ∈ (∅ : Set U) we conclude that False
+  We conclude by contradicting x ∈ (∅ : Set U)
 QED
 
 #doc (WaterproofGenre) "Power Set" =>

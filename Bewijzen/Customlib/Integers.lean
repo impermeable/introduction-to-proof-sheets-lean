@@ -62,11 +62,23 @@ lemma mul_even {a b : ℤ} (_ : Even b) : Even (a * b) :=
   Even.mul_left ‹Even b› a
 
 -- ══════════════════════════════════════════════════════════════
--- § Contradiction
+-- § Excluded middle rules
 -- ══════════════════════════════════════════════════════════════
 
-lemma even_and_odd_false {n : ℤ} (_ : Even n) (_ : Odd n) : False := by
+lemma even_and_odd_false {n : ℤ} (_ : Odd n) (_ : Even n) : False := by
   obtain ⟨k, hk⟩ := ‹Even n›; obtain ⟨l, hl⟩ := ‹Odd n›; omega
+
+lemma even_not_odd {n : ℤ} (h : Even n) : ¬ Odd n :=
+  Int.not_odd_iff_even.mpr h
+  
+lemma odd_not_even {n : ℤ} (h : Odd n) : ¬ Even n := 
+  Int.not_even_iff_odd.mpr h
+
+lemma not_even_odd {n : ℤ} (h : ¬ Even n) : Odd n :=
+  Int.not_even_iff_odd.mp h
+
+lemma not_odd_even {n : ℤ} (h : ¬ Odd n) : Even n :=
+  Int.not_odd_iff_even.mp h
 
 -- ══════════════════════════════════════════════════════════════
 -- § Miscellaneous integer identities

@@ -15,6 +15,7 @@
 
 import Verbose.English.All
 import Mathlib.Analysis.SpecialFunctions.Sqrt
+import Mathlib.Algebra.Order.Ring.Unbundled.Basic
 import Mathlib.Order.Interval.Set.Basic
 
 -- ══════════════════════════════════════════════════════════════
@@ -56,13 +57,28 @@ lemma eq_sqrt_of_pos_sq {x a : ℝ} (hx : x > 0) (_ : a > 0) (hxa : x ^ 2 = a) :
 -- § Quadratic / sum-of-squares helpers
 -- ══════════════════════════════════════════════════════════════
 
-lemma quad_root {x a : ℝ} (h : x ^ 2 + 2 * a * x + a ^ 2 = 0) : x = -a := by
-  nlinarith [sq_nonneg (x + a)]
+lemma nonneg_sq (a : ℝ) : a ^ 2 ≥ 0 := by
+  exact sq_nonneg a
+
+lemma pos_sq {a : ℝ} (_ : a ≠ 0) : a ^ 2 > 0 := by
+  positivity
+
+-- x ² = 0 forces x = 0 — used to step from `(y + a) ^ 2 = 0` to `y + a = 0`.
+lemma zero_of_sq_eq_zero {x : ℝ} (h : x ^ 2 = 0) : x = 0 :=
+  pow_eq_zero_iff (by norm_num) |>.mp h
+
+-- a * b = 0 forces one factor to vanish — used to case-split a factored quadratic
+-- such as `(y + √a) * (y - √a) = 0` into `y + √a = 0 ∨ y - √a = 0`.
+lemma factors_zero {a b : ℝ} (h : a * b = 0) : a = 0 ∨ b = 0 := mul_eq_zero.mp h
+
+lemma nonneg_add_pos (a b : ℝ) (_ : a ≥ 0) (_ : b > 0) : a + b > 0 := by
+  positivity
 
 lemma neg_a_is_root (a : ℝ) : (-a) ^ 2 + 2 * a * (-a) + a ^ 2 = 0 := by ring
 
-lemma sq_sum_zero_imp {b : ℝ} (h : ∃ x : ℝ, x ^ 2 + b ^ 2 = 0) : b = 0 := by
-  obtain ⟨x, hx⟩ := h; nlinarith [sq_nonneg x, sq_nonneg b]
+-- A quantity cannot be both zero and strictly positive — closes the
+-- `a ^ 2 + b ^ 2 = 0` vs `a ^ 2 + b ^ 2 > 0` contradiction.
+lemma eq_and_gt_false {a b : ℝ} (h1 : a = b) (h2 : a > b) : False := by linarith
 
 -- ══════════════════════════════════════════════════════════════
 -- § Square / absolute value lemmas

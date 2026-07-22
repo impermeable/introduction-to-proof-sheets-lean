@@ -4,6 +4,7 @@ import Bewijzen.Customlib.Reals
 import Bewijzen.Customlib.Lists
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 open scoped Bewijzen.IntervalNotation
 open scoped Bewijzen.PairSetNotation
 
@@ -32,13 +33,13 @@ Proof:
     · Assume that b ≤ 0
       Assume for contradiction that ¬ ((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0))
       Since ¬ ((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0)) we get that (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0)
-      Since (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0) and a * b ≥ 0 we conclude that False
+      We conclude by contradicting (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0) and a * b ≥ 0
   · Assume that a ≤ 0
     We discuss depending on whether b ≥ 0 or b ≤ 0
     · Assume that b ≥ 0
       Assume for contradiction that ¬ ((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0))
       Since ¬ ((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0)) we get that (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0)
-      Since (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0) and a * b ≥ 0 we conclude that False
+      We conclude by contradicting (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0) and a * b ≥ 0
     · Assume that b ≤ 0
       Let's prove that a ≤ 0 ∧ b ≤ 0
       · Since a ≤ 0 and b ≤ 0 we conclude that a ≤ 0 ∧ b ≤ 0
@@ -61,7 +62,7 @@ Proof:
       Since 1 - x ≥ 0 and 1 + x ≥ 0 we conclude that x ∈ [-1, 1]
     · Assume that 1 - x ≤ 0 ∧ 1 + x ≤ 0
       Let's prove it's contradictory
-      Since 1 - x ≤ 0 ∧ 1 + x ≤ 0 we conclude that False
+      We conclude by contradicting 1 - x ≤ 0 ∧ 1 + x ≤ 0
   Let's now prove that [-1, 1] ⊆ {x | x ^ 2 ≤ 1}
   · Fix x ∈ [-1, 1]
     Since x ∈ [-1, 1] we get that -1 ≤ x and x ≤ 1

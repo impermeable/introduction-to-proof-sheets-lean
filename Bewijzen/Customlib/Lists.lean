@@ -84,4 +84,6 @@ AnonymousGoalSplittingLemmasList deMorgan :=
 -- ══════════════════════════════════════════════════════════════
 
 AnonymousGoalSplittingLemmasList squareRoot :=
-  sqrt_pos_and_sq eq_sqrt_of_pos_sq quad_root neg_a_is_root sq_sum_zero_imp
+  sqrt_pos_and_sq eq_sqrt_of_pos_sq neg_a_is_root
+  pos_sq zero_of_sq_eq_zero nonneg_sq nonneg_add_pos eq_and_gt_false
+  factors_zero

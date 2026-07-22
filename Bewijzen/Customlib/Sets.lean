@@ -11,7 +11,7 @@ import Verbose.English.All
 -- § Empty set
 -- ══════════════════════════════════════════════════════════════
 
--- x ∈ ∅ implies False — lets "Since x ∈ ∅ we conclude that False" work directly.
+-- x ∈ ∅ implies False — lets "We conclude by contradicting x ∈ ∅" work directly.
 lemma mem_empty_contra {α : Type} {x : α} (h : x ∈ (∅ : Set α)) : False := by
   simp [Set.mem_empty_iff_false] at h
 

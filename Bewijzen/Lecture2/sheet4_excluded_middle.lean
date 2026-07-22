@@ -3,18 +3,24 @@ import Verbose.English.All
 import Bewijzen.Customlib.Integers
 
 open WaterproofGenre
+open Verbose.NameLess
+open Verbose.Contradicting
 
 addAnonymousGoalSplittingLemma odd_of_two_mul_add_one
 addAnonymousGoalSplittingLemma even_and_odd_false
 
 #doc (WaterproofGenre) "Excluded Middle" =>
 
-The law of excluded middle states that for any proposition `p`, either `p` or `¬p` holds.
-In Lean Verbose, you can use `We discuss depending on whether p or ¬ p` to split into cases.
+The law of excluded middle may be useful to prove some statements that are unprovable without it. It states that for any proposition `p`, either `p` or `¬p` holds.
+In Waterproof, you can use `We discuss depending on whether p or ¬ p` to split into cases.
 
+When we have contradictory propositions in our assumptions and want to prove by contradiction, we can use `Let's prove it's contradictory`, which substitutes our goal with False. It is always sufficient to prove False, since anything follows from False.
+
+:::hint "📦 Technical details"
 ```lean
 configureAnonymousCaseSplittingLemmas Classical.em Int.even_or_odd
 ```
+:::
 
 ```lean
 Example "1.1.64"
@@ -28,8 +34,7 @@ Proof:
     · Assume that q
       Let's prove it's contradictory
       Since p and q we get that p ∧ q
-      It suffices to prove that False
-      Since ¬(p ∧ q) and p ∧ q we conclude that False
+      We conclude by contradicting ¬(p ∧ q) and p ∧ q
     · Assume that ¬q
       Let's prove that ¬q
       · We conclude by hypothesis
@@ -39,25 +44,7 @@ Proof:
 QED
 ```
 
-::::multilean
-```lean
-Exercise "1.1.67"
-  Given: (p q : Prop)
-  Assume:
-  Conclusion: (¬q ⇒ ¬p) ⇒ p ⇒ q
-Proof:
-```
-:::input
-```lean
-
-```
-:::
-```lean
-QED
-```
-::::
-
-Proposition 1.1.65 is an example of use of the law of excluded middle.
+Proposition 1.1.65 is another example of using the law of excluded middle.
 
 ```lean
 Example "1.1.65"
@@ -82,8 +69,28 @@ Proof:
       Since a = 2 * k + 1 and b = 2 * l + 1 we get that a * b = (2 * k + 1) * (2 * l + 1)
       Since a * b = (2 * k + 1) * (2 * l + 1) we get that a * b = 2 * (2 * k * l + k + l) + 1
       Since a * b = 2 * (2 * k * l + k + l) + 1 we get that a * b is odd
-      Since a * b is even we get that ¬(a * b is odd)
-      It suffices to prove that False
-      Since ¬(a * b is odd) and a * b is odd we conclude that False
+      We conclude by contradicting a * b is even and a * b is odd
 QED
 ```
+
+In the next exercise you can practice applying the law of excluded middle.
+
+::::multilean
+```lean
+Exercise "1.1.67"
+  Given: (p q : Prop)
+  Assume:
+  Conclusion: (¬q ⇒ ¬p) ⇒ (p ⇒ q)
+Proof:
+```
+:::input
+```lean
+
+```
+:::
+```lean
+QED
+```
+::::
+
+
