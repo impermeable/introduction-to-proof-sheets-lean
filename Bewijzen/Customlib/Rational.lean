@@ -14,10 +14,10 @@ import Verbose.English.All
 -- ══════════════════════════════════════════════════════════════
 
 abbrev IsRational (x : ℝ) : Prop := ∃ q : ℚ, (q : ℝ) = x
-notation:50 x " is rational" => IsRational x
+notation:51 x " is rational" => IsRational x
 
 abbrev IsIrrational (x : ℝ) : Prop := ¬IsRational x
-notation:50 x " is irrational" => IsIrrational x
+notation:51 x " is irrational" => IsIrrational x
 
 -- ══════════════════════════════════════════════════════════════
 -- § Type coercions
