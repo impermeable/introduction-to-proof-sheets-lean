@@ -240,7 +240,7 @@ lemma mul_self_ge_self_of_le_zero {x : ℝ} (h : x ≤ 0) : x * x ≥ x := by nl
 -- 1 - x ≤ 0 and 1 + x ≤ 0 cannot both hold simultaneously.
 lemma bound_contra {x : ℝ} (h : 1 - x ≤ 0 ∧ 1 + x ≤ 0) : False := by linarith
 
--- De Morgan bridge: ¬((a≥0 ∧ b≥0) ∨ (a≤0 ∧ b≤0)) decomposes into sign disjunctions.
+-- De Morgan bridge: ¬((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0)) decomposes into sign disjunctions.
 lemma de_morgan_bridge {a b : ℝ}
     (h : ¬((a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0)))
     : (a < 0 ∨ b < 0) ∧ (a > 0 ∨ b > 0) := by

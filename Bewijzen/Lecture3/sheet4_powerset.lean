@@ -34,8 +34,13 @@ QED
 
 #doc (WaterproofGenre) "Power Set" =>
 
+In Waterproof, the powerset of `X` is denoted as `𝒫 X` (`𝒫` is written as `\McP`), and `A ∈ 𝒫 X` is by definition equivalent to `A ⊆ X`.
+From this, you can use `It suffices to prove that ...` if the statement `A ∈ 𝒫 X` is in the goal, and you can use `Since ... we get that ...` if the statement `A ∈ 𝒫 X` is in the assumptions.
+In both cases, Waterproof will automatically use the definition of the power set to complete the proof step.
+Below is an example.
+
 ```lean
-Example "2.1.28"
+Example "2.1.29_definition"
   Given: (U : Type) (X Y : Set U)
   Assume:
   Conclusion: X ⊆ Y ⇔ X ∈ 𝒫 Y
@@ -49,9 +54,11 @@ Proof:
 QED
 ```
 
+Below are several exercises on powersets.
+
 ::::multilean
 ```lean
-Exercise "2.1.31a"
+Exercise "2.1.32a"
   Given: (U : Type) (X : Set U)
   Assume:
   Conclusion: ∅ ∈ 𝒫 X
@@ -69,7 +76,7 @@ QED
 
 ::::multilean
 ```lean
-Exercise "2.1.31b"
+Exercise "2.1.32b"
   Given: (U : Type) (X : Set U)
   Assume:
   Conclusion: X ∈ 𝒫 X
@@ -87,7 +94,7 @@ QED
 
 ::::multilean
 ```lean
-Exercise "2.1.34"
+Exercise "2.1.35"
   Given: (U : Type) (X Y : Set U)
   Assume: (_ : X ⊆ Y)
   Conclusion: 𝒫 X ⊆ 𝒫 Y
@@ -103,11 +110,11 @@ QED
 ```
 ::::
 
-Below are two options for exercise 2.1.36a; only one of them is true. Prove the one that is true.
+Below are two options for exercise 2.1.36a. Prove the one that is true.
 
 ::::multilean
 ```lean
-Exercise "2.1.36a (true)"
+Exercise "2.1.36b (true)"
   Given: (U : Type)
   Assume:
   Conclusion: 𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 (∅ : Set U))
@@ -125,7 +132,7 @@ QED
 
 ::::multilean
 ```lean
-Exercise "2.1.36a (false)"
+Exercise "2.1.36b (false)"
   Given: (U : Type)
   Assume:
   Conclusion: ¬ (𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 (∅ : Set U)))

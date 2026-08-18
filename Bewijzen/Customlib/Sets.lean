@@ -44,6 +44,14 @@ lemma not_mem_compl_of_mem {U : Type} {A : Set U} {x : U}
 -- § Empty set
 -- ══════════════════════════════════════════════════════════════
 
+def SetIsEmpty {U : Type} (X : Set U) : Prop :=
+  ∀ _ ∈ X, False
+
+-- The notation `X is empty` reads as `∀ x ∈ X, False`
+namespace Bewijzen.EmptySetNotation
+scoped notation:50 X " is empty" => SetIsEmpty X
+end Bewijzen.EmptySetNotation
+
 -- x ∈ ∅ implies False — lets "We conclude by contradicting x ∈ ∅" work directly.
 lemma mem_empty_contra {α : Type} {x : α} (h : x ∈ (∅ : Set α)) : False := by
   simp [Set.mem_empty_iff_false] at h

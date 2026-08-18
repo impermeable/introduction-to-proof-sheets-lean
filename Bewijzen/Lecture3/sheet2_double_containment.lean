@@ -2,6 +2,7 @@ import WaterproofGenre
 import Verbose.English.All
 import Bewijzen.Customlib.Reals
 import Bewijzen.Customlib.Lists
+
 open WaterproofGenre
 open Verbose.NameLess
 open Verbose.Contradicting
@@ -15,11 +16,15 @@ addAnonymousGoalSplittingLemma intervalMembership
 addAnonymousGoalSplittingLemma deMorgan
 addAnonymousGoalSplittingLemma realSignArithmetic
 addAnonymousGoalSplittingLemma pairSets
+addAnonymousGoalSplittingLemma Or.symm
+
 
 #doc (WaterproofGenre) "Double Containment" =>
 
+Below is a lemma that is not in the book, but is used in the proof of Example 2.1.16.
+
 ```lean
-Example "multiplication_dichotomy"
+Lemma multiplication_dichotomy "multiplication_dichotomy"
   Given: (a b : ℝ)
   Assume: (_ : a * b ≥ 0)
   Conclusion: (a ≥ 0 ∧ b ≥ 0) ∨ (a ≤ 0 ∧ b ≤ 0)
@@ -46,6 +51,12 @@ Proof:
 QED
 ```
 
+Below is an example of how to do a proof by double containment (Strategy 2.1.15) in Waterproof.
+This can be done by using `Let's first prove that ...` and `Let's now prove that ...` for the two inclusions.
+This also shows how you can refer to an earlier result in Waterproof.
+We can provide parameters `a` and `b` to the lemma by writing `applied to a and b`, and the fact that `a * b ≥ 0`
+by writing `using that a * b ≥ 0`.
+
 ```lean
 Example "2.1.16"
   Given:
@@ -54,9 +65,10 @@ Example "2.1.16"
 Proof:
   Let's first prove that {x | x ^ 2 ≤ 1} ⊆ [-1, 1]
   · Fix x
-    Assume that x ∈ {x | x ^ 2 ≤ 1}
-    Since x ^ 2 ≤ 1 we get that (1 - x)*(1 + x) ≥ 0
-    Since (1 - x)*(1 + x) ≥ 0 we get that (1 - x ≥ 0 ∧ 1 + x ≥ 0) ∨ (1 - x ≤ 0 ∧ 1 + x ≤ 0)
+    Assume that x ^ 2 ≤ 1
+    Since x ^ 2 ≤ 1 we get that (1 - x) * (1 + x) ≥ 0
+    Fact : (1 - x ≥ 0 ∧ 1 + x ≥ 0) ∨ (1 - x ≤ 0 ∧ 1 + x ≤ 0) from multiplication_dichotomy
+      applied to 1 - x and 1 + x using that (1 - x) * (1 + x) ≥ 0
     We discuss depending on whether (1 - x ≥ 0 ∧ 1 + x ≥ 0) or (1 - x ≤ 0 ∧ 1 + x ≤ 0)
     · Assume that 1 - x ≥ 0 ∧ 1 + x ≥ 0
       Since 1 - x ≥ 0 and 1 + x ≥ 0 we conclude that x ∈ [-1, 1]
@@ -70,6 +82,8 @@ Proof:
     Since |x| ≤ 1 we conclude that x ^ 2 ≤ 1
 QED
 ```
+
+Below are two exercises to practice proof by double containment (Strategy 2.1.15). 
 
 ::::multilean
 ```lean
