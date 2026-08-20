@@ -71,7 +71,7 @@ The line `Since p ∧ q we get that p and q` uses the assumed conjunction to der
 This line works not only with conjunctions, it can be used more generally to derive new propositions.
 For example, `Since A1, A2 and A3 we get that B1 and B2` checks if propositions B1 and B2 follow in one step from A1, A2 and A3.
 
-Writing `Since p and q we conclude that q ∧ p` works similarly, it derives propositions in one step.
+Writing `Since q and p we conclude that q ∧ p` works similarly, it derives propositions in one step.
 The difference is that after `conclude that` we should write the statement we want to show, and it finishes the current goal.
 Here we use this phrase instead of writing `Let's first prove that q` and then `Let's now prove that p`, since the goal follows in one step.
 
@@ -82,7 +82,7 @@ Example "1.1.11"
   Conclusion: q ∧ p
 Proof:
   Since p ∧ q we get that p and q
-  Since p and q we conclude that q ∧ p
+  Since q and p we conclude that q ∧ p
 QED
 ```
 
