@@ -26,6 +26,8 @@ addAnonymousGoalSplittingLemma not_even_odd
 addAnonymousGoalSplittingLemma not_odd_even
 
 #doc (WaterproofGenre) "For All" =>
+---
+**Reminder (odd or even)**
 
 The following pattern can be used to prove things about odd (or even).
 
@@ -49,6 +51,12 @@ Proof:
   Since n * n = 2 * (2 * k * k + 2 * k) + 1 we conclude that n * n is odd
 QED
 ```
+
+---
+
+# Universal quantification (∀)
+
+## How to prove ∀-goal
 
 When there is a for-all quantifier in the goal, such as `∀ x : ℝ`, we can introduce an arbitrary variable using `Fix x`.
 On paper, we write $`\forall x \in \mathbb{R}` instead of using the colon.
@@ -106,9 +114,11 @@ QED
 ```
 ::::
 
-In Example 1.2.20, `P` is a proposition dependent on a real-valued variable. An example of a variable-dependent proposition from mathematics is `x^2 + x = 0`.
+## How to use a ∀-assumption
+
+In Example 1.2.20 (below), `P x` is a proposition dependent on a real-valued variable. An example of a variable-dependent proposition from mathematics is `x^2 + x = 0`.
 A statement `∀ x : ℝ, P x` means that the proposition `P x` holds for every `x : ℝ`.
-To use a hypothesis `∀ x, P x`, write `Since ∀ x, P x we conclude that P a` for a specific `a`.
+To use a hypothesis `∀ x : ℝ, P x`, write `Since ∀ x : ℝ, P x we conclude that P a` for a specific `a`.
 
 ```lean
 Example "1.2.20"
@@ -119,7 +129,7 @@ Proof:
   Since ∀ x : ℝ, P x we conclude that P 0
 QED
 ```
-Again, the first exercise is just to get used to the syntax, the next exercise is a bit more challenging.
+Again, the first exercise is just to get used to the syntax, the second exercise is a bit more challenging.
 ::::multilean
 
 ```lean
@@ -156,6 +166,8 @@ Proof:
 QED
 ```
 ::::
+
+## Application - irrational numbers
 
 Below is an exercise involving irrational numbers.
 

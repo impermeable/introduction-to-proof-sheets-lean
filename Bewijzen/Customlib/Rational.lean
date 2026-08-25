@@ -138,9 +138,34 @@ lemma rational_from_neg_cast_frac {y : ℝ} {n d : ℤ} (_hd : d ≠ 0) (h : y =
   push_cast [neg_div] at *
   linarith
 
+/- Abandoned due to issues with `n/d ≠ 0` being read as inequality in `ℤ` in student input -/
+-- -- Negation: if x ≠ 0 and x = n/d then n/d ≠ 0
+-- lemma frac_ne_zero_of_ne_zero_of_eq {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (heq : x = n / d) : (n : ℝ) / d ≠ 0 := by
+--   subst heq
+--   exact hx
+
+
 -- ══════════════════════════════════════════════════════════════
 -- § Reciprocal helpers
 -- ══════════════════════════════════════════════════════════════
+
+-- Reciprocal: if x ≠ 0 then 1/x ≠ 0.
+lemma recip_frac_ne_zero_of_ne_zero {x : ℝ} (hx : x ≠ 0) : 1 / x ≠ 0 := by
+  simp [hx]
+
+/- Abandoned due to issues with `n/d ≠ 0` being read as inequality in `ℤ` in student input -/
+-- -- Reciprocal: if n/d ≠ 0 then n ≠ 0.
+-- lemma num_ne_zero_of_frac_ne_zero {n d : ℤ} (h : n / d ≠ 0) : n ≠ 0 := by
+--   intro hn
+--   subst hn
+--   simp at h
+
+-- Reciprocal: if y = n/d and y ≠ 0 then n ≠ 0.
+lemma num_ne_zero_of_eq_of_ne_zero {n d : ℤ} {y : ℝ} (h : y = n / d) (hy : y ≠ 0) : n ≠ 0 := by
+  intro hn
+  subst hn
+  subst h
+  simp at hy
 
 -- Reciprocal: if x ≠ 0 and 1/x = n/d then n ≠ 0.
 lemma ne_zero_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (h : 1 / x = n / d) : n ≠ 0 := by
@@ -149,9 +174,9 @@ lemma ne_zero_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (h : 1 / x = n 
   simp at h
   exact hx h
 
--- Reciprocal: if x ≠ 0 and n ≠ 0 and 1/x = n/d then x = d/n.
-lemma eq_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (hn : n ≠ 0) (h : 1 / x = n / d) : x = d / n := by
-  have hn' : (n : ℝ) ≠ 0 := Int.cast_ne_zero.mpr hn
+-- Reciprocal: if x ≠ 0 and 1/x = n/d then x = d/n.
+lemma eq_of_recip_frac {n d : ℤ} {x : ℝ} (hx : x ≠ 0) (h : 1 / x = n / d) : x = d / n := by
+  have hn' : (n : ℝ) ≠ 0 := Int.cast_ne_zero.mpr (ne_zero_of_recip_frac hx h)
   have hd' : (d : ℝ) ≠ 0 := by
     intro hd_zero
     simp [hd_zero] at h

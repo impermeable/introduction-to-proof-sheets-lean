@@ -1,18 +1,19 @@
 import WaterproofGenre
 import Verbose.English.All
 
-
 open WaterproofGenre
 open Verbose.NameLess
 
 #doc (WaterproofGenre) "Conjunction" =>
 
-::::multilean
+# Introduction
 
 Welcome to the exercise sheets for Bewijzen in de Wiskunde.
 These sheets are designed to accompany the textbook Infinite Descent into Mathematics and are intended to help you learn the concepts through the use of Waterproof.
 
 Whenever you have a question about a mathematical concept, refer to the textbook. If you have a question about how to use Waterproof, first check these sheets. If you are still unsure, ask your teacher.
+
+## Waterproof
 
 Waterproof is software developed to construct and verify mathematical proofs using a computer. You write your proofs in the input fields, and the system checks their correctness and provides feedback on any mistakes.
 
@@ -26,6 +27,8 @@ Waterproof provides an overview of the current goal on the right side of the scr
 The goal shown will update dynamically based on the position of your cursor in the proof.
 
 Use the example below to explore how the goal changes by clicking in the proof and moving your cursor up and down. The specific proof techniques used in this example will be explained in later sections.
+
+::::multilean
 
 ```lean
 Example "1.1.1"
@@ -43,6 +46,13 @@ QED
 ::::
 
 The language we use in Waterproof is "Verbose Lean", built on top of the Lean proof assistant. You can find the specific phrases you can use in this language in the examples or by clicking the Waterproof droplet to the left and then clicking the "Tactics" button.
+
+
+---
+
+# Conjuntion (∧)
+
+## How to prove ∧-goal
 
 To prove conjunctions we first type `Let's first prove that [left proposition]`, after which we demonstrate that the left proposition is true using a subproof. Then we type `Let's now prove that [right proposition]`, and demonstrate that the right proposition is true using another subproof.
 These subproofs begin with a bullet point, using `·` as bullet symbols.
@@ -65,8 +75,9 @@ Proof:
   · We conclude by hypothesis
 QED
 ```
+## How to use ∧-assumption
 
-Below is how to assume conjunctions (Strategy 1.1.10) in Waterproof.
+Below is how to use a conjunction in an assumption (Strategy 1.1.10) in Waterproof.
 The line `Since p ∧ q we get that p and q` uses the assumed conjunction to derive and add two new propositions, `p` and `q`, to your assumptions.
 This line works not only with conjunctions, it can be used more generally to derive new propositions.
 For example, `Since A1, A2 and A3 we get that B1 and B2` checks if propositions B1 and B2 follow in one step from A1, A2 and A3.
@@ -86,9 +97,10 @@ Proof:
 QED
 ```
 
-::::multilean
-
+## Exercises
 Use the techniques shown in these examples to finish the following exercises.
+
+::::multilean
 
 ```lean
 Exercise "1.1.13"

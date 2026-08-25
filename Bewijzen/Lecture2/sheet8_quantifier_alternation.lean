@@ -8,10 +8,13 @@ open Verbose.Contradicting
 
 #doc (WaterproofGenre) "Quantifier Alternation" =>
 
+# Order of quantifiers
+
 When quantifiers alternate (e.g., `∃ y, ∀ x, ...` versus `∀ x, ∃ y, ...`), the order matters.
 In general, `∃ y, ∀ x, P x y` implies `∀ x, ∃ y, P x y`, but not the other way around.
+The below exercises provide an explicit example.
 
-By default, Waterproof treats the literals 0, 1, 2, … as natural numbers. When you use such a literal explicitly
+⚠️ By default, Waterproof treats the literals 0, 1, 2, … as natural numbers. When you use such a literal explicitly
 while working in `ℤ`, `ℚ`, or `ℝ`, you may need to annotate a set it belongs to, for example `(0 : ℤ)`.
 
 :::hint "📦 Technical details"
@@ -68,14 +71,14 @@ QED
 
 ```lean
 Example "1.2.40"
-  Given: (X Y : Type) (p : X → Y → Prop)
+  Given: (X Y : Type) (P : X → Y → Prop)
   Assume:
-  Conclusion: (∃ y : Y, ∀ x : X, p x y) ⇒ ∀ x : X, ∃ y : Y, p x y
+  Conclusion: (∃ y : Y, ∀ x : X, P x y) ⇒ ∀ x : X, ∃ y : Y, P x y
 Proof:
-  Assume that ∃ y : Y, ∀ x : X, p x y
-  Since ∃ y : Y, ∀ x : X, p x y we get b such that ∀ x : X, p x b
+  Assume that ∃ y : Y, ∀ x : X, P x y
+  Since ∃ y : Y, ∀ x : X, P x y we get b such that ∀ x : X, P x b
   Fix a
   Let's prove that b works
-  Since ∀ x : X, p x b we conclude that p a b
+  Since ∀ x : X, P x b we conclude that P a b
 QED
 ```

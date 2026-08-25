@@ -8,6 +8,8 @@ open Verbose.NameLess
 
 #doc (WaterproofGenre) "Even and Perfect Square" =>
 
+# Application -  *even* and *perfect square* numbers
+
 Below are examples of how you can show that a certain number is even or a perfect square.
 Showing `n is even` is done by proving that `n = m + m` for some `m`, as shown below.
 Showing `n is square` is done by proving that `n = m * m` for some `m`, as shown below.

@@ -17,11 +17,12 @@ addAnonymousGoalSplittingLemma rational_witnesses_int
 set_option linter.unusedTactic false
 
 #doc (WaterproofGenre) "Implication" =>
+# Implication (⇒)
+
+## How to prove ⇒-goal
 
 Below is an example of proving implications (Strategy 1.1.28).
 You type `Assume that [statement]` to assume the left-hand side of an implication.
-When the goal is a chain of implications, you can assume several statements at once by separating them with `and` or commas, for example `Assume that p and q`.
-
 ```lean
 Example "1.1.29"
   Given: (p q : Prop)
@@ -33,6 +34,9 @@ Proof:
   We conclude by hypothesis
 QED
 ```
+When the goal is a chain of implications like in the example above, you can also assume several statements at once by separating them with `and` or commas, like `Assume that p and q`.
+
+### Application - rational numbers
 
 Below is another example of proving implications (Strategy 1.1.28).
 This example involves rational numbers, defined as follows:
@@ -44,7 +48,7 @@ This definition means that a number is rational if it can be written as a fracti
 Thus, if you know that `x` is rational, there exist integers `n` and `d` such that `d ≠ 0` and `x = n/d`. To prove that `x` is rational, it is sufficient to have both `d ≠ 0` and `x = n/d` in your assumptions for some fixed `n` and `d`.
 
 ```lean
-Example "1.1.23"
+Example "1.1.30"
   Given: (x y : ℝ)
   Assume:
   Conclusion: x is rational ⇒ (x + y is rational ⇒ y is rational)
@@ -64,6 +68,8 @@ Proof:
   Since e * d ≠ 0 and y = (m * d - n * e) / (e * d) we conclude that y is rational
 QED
 ```
+
+### Exercises
 
 Below are two exercises to practice proving implications (Strategy 1.1.28).
 
@@ -104,7 +110,12 @@ QED
 ```
 ::::
 
-Below is an example of assuming implications (modus ponens, Strategy 1.1.34).
+
+## How to use ⇒-assumption
+
+Below are examples of how to use an assumed implication (modus ponens, Strategy 1.1.34).
+
+### Backwards reasoning
 
 We type `Since (p ∨ q) ⇒ r it suffices to prove that p ∨ q` to perform backwards reasoning. When the goal is `r` and we have the implication `(p ∨ q) ⇒ r` in our assumptions, it is enough to show `p ∨ q`, so we make it our new goal.
 
@@ -112,7 +123,7 @@ We type `Since (p ∨ q) ⇒ r it suffices to prove that p ∨ q` to perform bac
 Example "1.1.35"
   Given: (p q r : Prop)
   Assume:
-  Conclusion: ((p ∨ q) ⇒ r) ∧ p ⇒ r
+  Conclusion: (((p ∨ q) ⇒ r) ∧ p) ⇒ r
 Proof:
   Assume that ((p ∨ q) ⇒ r) ∧ p
   Since ((p ∨ q) ⇒ r) ∧ p we get that (p ∨ q) ⇒ r and p
@@ -122,25 +133,30 @@ Proof:
 QED
 ```
 
+### Forwards reasoning
+
 Below is an alternative proof using direct reasoning.
 
-We type `Fact: [statement] by` to define a proposition as a new assumption, after which we provide a proof of it.
+We type `Fact: [statement] by` to introduce an intemediate result, after which we provide a proof of it.
+Intermediate results can be used in the same way as assumptions (e.g. the final line in the example).
 
 ```lean
 -- alternative direct proof
 Example "1.1.35"
   Given: (p q r : Prop)
   Assume:
-  Conclusion: ((p ∨ q) ⇒ r) ∧ p ⇒ r
+  Conclusion: (((p ∨ q) ⇒ r) ∧ p) ⇒ r
 Proof:
   Assume that ((p ∨ q) ⇒ r) ∧ p
   Since ((p ∨ q) ⇒ r) ∧ p we get that (p ∨ q) ⇒ r and p
   Fact: p ∨ q by
     · Let's prove that p
-      · We conclude by hypothesis
+      We conclude by hypothesis
   Since (p ∨ q) ⇒ r and p ∨ q we conclude that r
 QED
 ```
+
+### Exercises
 
 Below are two exercises that require assuming implications (Strategy 1.1.34).
 

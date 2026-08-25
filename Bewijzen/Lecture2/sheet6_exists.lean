@@ -10,7 +10,11 @@ addAnonymousGoalSplittingLemma expand_cube_succ
 
 #doc (WaterproofGenre) "Exists" =>
 
-Example 1.2.25 shows how you can prove an existentially quantified statement.
+# Existential quantification (∃)
+
+## How to prove ∃-goal
+
+Example 1.2.25 below shows how you can prove an existentially quantified statement.
 To prove such a statement, use `Let's prove that a works` for a specific `a`, then prove `P a`.
 
 ```lean
@@ -43,6 +47,8 @@ QED
 In Waterproof, the notation `a ∣ b` for integers `a` and `b` means that `∃ m : ℤ, b = a * m`.
 Use this to prove the following fact.
 
+(the notation `∣` is written using `\abs`, not the `|`-symbol on your keyboard!)
+
 ::::multilean
 ```lean
 Exercise "1.2.28"
@@ -61,10 +67,12 @@ QED
 ```
 ::::
 
-We write `It suffices to prove that ...` to transform the goal from a divisibility expression
-to the form with an existential quantifier.
+## How to use an ∃-assumption
 
 To use a hypothesis `∃ x, P x`, write `Since ∃ x, P x we get x such that P x`.
+
+In the example below, we write `It suffices to prove that ...` to transform the goal from a divisibility expression to the form with an existential quantifier.
+
 
 
 ```lean
@@ -73,11 +81,11 @@ Example "1.2.31"
   Assume: (_ : 3 ∣ n ^ 3)
   Conclusion: 3 ∣ (n + 1) ^ 3 - 1
 Proof:
-  Since 3 ∣ n ^ 3 we get that ∃ a : ℤ, n ^ 3 = 3 * a
-  Since ∃ a : ℤ, n ^ 3 = 3 * a we get m such that n ^ 3 = 3 * m
+  Since 3 ∣ n ^ 3 we get that ∃ q : ℤ, n ^ 3 = 3 * q
+  Since ∃ q : ℤ, n ^ 3 = 3 * q we get q such that n ^ 3 = 3 * q
   It suffices to prove that ∃ k : ℤ, (n + 1) ^ 3 - 1 = 3 * k
-  Let's prove that m + n ^ 2 + n works
-  Since n ^ 3 = 3 * m we conclude that (n + 1) ^ 3 - 1 = 3 * (m + n ^ 2 + n)
+  Let's prove that q + n ^ 2 + n works
+  Since n ^ 3 = 3 * q we conclude that (n + 1) ^ 3 - 1 = 3 * (q + n ^ 2 + n)
 QED
 ```
 

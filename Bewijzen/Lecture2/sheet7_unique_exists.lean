@@ -13,11 +13,14 @@ addAnonymousGoalSplittingLemma add_pos
 
 #doc (WaterproofGenre) "Unique Existence" =>
 
+# Unique existence (∃!)
+
 A statement `∃! x, P x` means there exists a unique `x` for which `P x` holds.
 To prove it, use `Let's prove that a works`, then prove `P a`, and then prove `∀ y, P y ⇒ y = a`.
 Note that this is different from the book, where this is given as an alternative characterisation.
-We will prove the reverse characterisation provided in the book, and then use the alternative charactisation by default.
 
+We will prove the reverse characterisation provided in the book, and then use the alternative charactisation by default.
+The proof itself is not that important right now, *so feel free to skip it!*
 ```lean
 Example "1.2.38_alternative"
   Given: (X : Type) (P : X → Prop)
@@ -48,7 +51,8 @@ Proof:
       Since ∀ x y : X, P x ∧ P y ⇒ x = y, P c and P y we conclude that y = c
 QED
 ```
-
+## Example
+The following example demonstrates how this alternative characterization of ∃! can be used 
 ```lean
 Example "1.2.36"
   Given: (a : ℝ)
@@ -80,6 +84,7 @@ Proof:
       Since y - √a = 0 we conclude that y = √a
 QED
 ```
+## Exercises
 
 Two exercises to practice proving unique existence.
 

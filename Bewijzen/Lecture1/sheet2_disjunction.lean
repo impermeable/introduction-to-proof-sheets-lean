@@ -3,6 +3,9 @@ import Verbose.English.All
 open WaterproofGenre
 open Verbose.NameLess
 #doc (WaterproofGenre) "Disjunction" =>
+# Disjunction (∨)
+
+## How to prove ∨-goal
 
 Proving disjunctions (1.1.15) uses a similar phrase `Let's prove that [statement]` to proving conjunctions (1.1.7), but without `first` and `next` keyword and, in contrast to conjunctions, just one of the two proposition has to be proven.
 
@@ -27,7 +30,7 @@ Do the exercise below to practice proving disjunctions (1.1.16). This exercise i
 
 ::::multilean
 ```lean
-Exercise "1.1.13_extra"
+Exercise "1.1.16_extra"
   Given: (p q r : Prop)
   Assume: (_ : p)
   Conclusion: (p ∨ q) ∨ r
@@ -43,7 +46,9 @@ QED
 ```
 ::::
 
-Below is an example of assuming disjunctions (proof by cases, Strategy 1.1.19).
+## How to use ∨-assumption
+
+Below is an example of how to use an assumed disjunction (proof by cases, Strategy 1.1.19).
 This is done by using `We discuss depending on whether [statement] or [statement]`, followed by two subproofs where the left and right propositions are assumed respectively, using `Assume that [statement]`.
 
 ```lean
