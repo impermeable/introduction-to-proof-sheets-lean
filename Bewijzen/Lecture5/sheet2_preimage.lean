@@ -12,6 +12,9 @@ addAnonymousGoalSplittingLemma imageMembership
 
 #doc (WaterproofGenre) "Function Preimages" =>
 
+This exercise sheet continues Section 3.1 Functions from the book Infinite Descent into Mathematics, now working with preimages.
+In Waterproof `f ⁻¹' V` is the preimage of `V` under `f`, and `x ∈ f ⁻¹' V` by definition means exactly `f(x) ∈ V`, so you can move between the two without a separate step.
+The example below shows how the image and the preimage interact.
 
 ```lean
 Example "3.1.39"
@@ -34,9 +37,11 @@ Proof:
 QED
 ```
 
+For technical reasons, Waterproof considers the empty set in the exercise below to have a universe of discourse of X or Y. Most of the time this will be determined automatically, but sometimes it cannot. If you get a weird error while using the empty set, try using `(∅ : Set X)` or `(∅ : Set Y)` instead of just `∅`.
+
 ::::multilean
 ```lean
-Exercise "3.1.40a"
+Exercise "3.1.41a"
   Given: (X Y : Type) (f : X → Y)
   Assume:
   Conclusion: f ⁻¹' (∅ : Set Y) = (∅ : Set X)
@@ -54,7 +59,7 @@ QED
 
 ::::multilean
 ```lean
-Exercise "3.1.40b"
+Exercise "3.1.41b"
   Given: (X Y : Type) (f : X → Y)
   Assume:
   Conclusion: f ⁻¹' (univ : Set Y) = (univ : Set X)
