@@ -14,10 +14,10 @@ addAnonymousGoalSplittingLemma subsetTheory
 configureAnonymousCaseSplittingLemmas caseSplittingClassical
 
 -- The specific function used in Exercise 3.2.39a
-noncomputable def F : ℝ → ℝ := fun x => (2 * x + 1) / 3
+noncomputable def f : ℝ → ℝ := fun x => (2 * x + 1) / 3
 
 -- The specific function used in Exercise 3.2.39b
-def G : Set ℕ → Set ℕ := fun A => Aᶜ
+def g : Set ℕ → Set ℕ := fun A => Aᶜ
 
 #doc (WaterproofGenre) "Inverse Functions" =>
 
@@ -30,7 +30,7 @@ and a right inverse when `∀ y : Y, f(g(y)) = y`. We say `g` is an inverse of
 Example "Left inverse of the identity"
   Given:
   Assume:
-  Conclusion: ∃ G : ℝ → ℝ, G is a left inverse of id
+  Conclusion: ∃ g : ℝ → ℝ, g is a left inverse of id
 Proof:
   Let's prove that id works
   It suffices to prove that ∀ x : ℝ, id(id(x)) = x
@@ -41,10 +41,10 @@ QED
 
 ::::multilean
 ```lean
-Exercise "3.2.21"
-  Given: (X Y : Type) (F : X → Y)
-  Assume: (_ : F has a left inverse)
-  Conclusion: F is injective
+Exercise "3.2.25"
+  Given: (X Y : Type) (f : X → Y)
+  Assume: (_ : f has a left inverse)
+  Conclusion: f is injective
 Proof:
 ```
 :::input
@@ -57,7 +57,7 @@ QED
 ```
 ::::
 
-`F : ℝ → ℝ` is the function `F x = (2 * x + 1) / 3`
+`f : ℝ → ℝ` is the function `f x = (2 * x + 1) / 3`
 
 
 ::::multilean
@@ -65,7 +65,7 @@ QED
 Exercise "3.2.39a"
   Given:
   Assume:
-  Conclusion: ∃ G : ℝ → ℝ, G is an inverse of F
+  Conclusion: ∃ g : ℝ → ℝ, g is an inverse of f
 Proof:
 ```
 :::input
@@ -78,14 +78,14 @@ QED
 ```
 ::::
 
-`G : Set ℕ → Set ℕ` is the function `G A = Aᶜ`.
+`g : Set ℕ → Set ℕ` is the function `g A = Aᶜ`.
 
 ::::multilean
 ```lean
 Exercise "3.2.39b"
   Given:
   Assume:
-  Conclusion: ∃ H : Set ℕ → Set ℕ, H is an inverse of G
+  Conclusion: ∃ h : Set ℕ → Set ℕ, h is an inverse of g
 Proof:
 ```
 :::input

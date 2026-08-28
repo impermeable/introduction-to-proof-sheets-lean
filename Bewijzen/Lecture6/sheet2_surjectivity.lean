@@ -15,9 +15,9 @@ configureAnonymousCaseSplittingLemmas caseSplittingClassical
 
 #doc (WaterproofGenre) "Surjective Functions" =>
 
-A function `f : X → Y` is surjective when every `y : Y` is of the form `f(x)`.
-To use or prove surjectivity, unfold it with
-`It suffices to prove that ∀ y : Y, ∃ x : X, f(x) = y`.
+A function `f : X → Y` is surjective when every `y : Y` is of the form `f(x)`. In
+Waterproof you can unfold `f is surjective` into that statement, both as a goal and
+from an assumption. The example below shows the syntax.
 
 ```lean
 Example "Surjectivity Example"
@@ -35,9 +35,9 @@ QED
 ::::multilean
 ```lean
 Exercise "3.2.16"
-  Given: (X : Type) (F : X → Set X)
+  Given: (X : Type) (f : X → Set X)
   Assume:
-  Conclusion: ¬ (F is surjective)
+  Conclusion: ¬ (f is surjective)
 Proof:
 ```
 :::input
@@ -50,12 +50,15 @@ QED
 ```
 ::::
 
+A function is bijective when it is both injective and surjective, so `f is bijective`
+is equivalent to `f is injective ∧ f is surjective`.
+
 ::::multilean
 ```lean
 Exercise "3.2.20"
-  Given: (X Y Z : Type) (F : X → Y) (G : Y → Z)
+  Given: (X Y Z : Type) (f : X → Y) (g : Y → Z)
   Assume:
-  Conclusion: F is bijective ⇒ G is bijective ⇒ (G ∘ F) is bijective
+  Conclusion: f is bijective ⇒ g is bijective ⇒ (g ∘ f) is bijective
 Proof:
 ```
 :::input

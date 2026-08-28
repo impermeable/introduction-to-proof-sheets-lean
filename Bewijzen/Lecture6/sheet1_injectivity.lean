@@ -14,9 +14,9 @@ configureAnonymousCaseSplittingLemmas caseSplittingClassical
 
 #doc (WaterproofGenre) "Injective Functions" =>
 
-A function `f` is injective when `f(a) = f(b)` implies `a = b`. To use or prove
-injectivity, unfold it with
-`It suffices to prove that ∀ a b : X, f(a) = f(b) ⇒ a = b`.
+A function `f` is injective when `f(a) = f(b)` implies `a = b`. In Waterproof you
+can unfold `f is injective` into that statement, both as a goal and from an
+assumption. The worked example below shows the syntax for doing so.
 
 ```lean
 Example "3.2.4"
@@ -53,6 +53,9 @@ Proof:
 QED
 ```
 ::::
+
+In the exercise below the function is written directly as `fun t : ℝ => a + b * t`
+instead of being given a name `f`. Injectivity is unfolded in the same way.
 
 ::::multilean
 ```lean
