@@ -6,6 +6,7 @@ import Bewijzen.Customlib.Sets
 
 open WaterproofGenre
 open Verbose.NameLess
+open Verbose.Contradicting
 open scoped Bewijzen.IntervalNotation
 open scoped Bewijzen.PairSetNotation
 
@@ -15,10 +16,14 @@ addAnonymousGoalSplittingLemma orderTheory
 addAnonymousGoalSplittingLemma emptySet
 addAnonymousGoalSplittingLemma pairSets
 addAnonymousGoalSplittingLemma intervalMembership
-addAnonymousGoalSplittingLemma pairValueContradictions
 addAnonymousGoalSplittingLemma singleInterval
 
 #doc (WaterproofGenre) "Intersection" =>
+
+This exercise sheet is for Section 2.2 Set Operations from the book Infinite Descent into Mathematics.
+First, we will prove statements involving the intersection operation (∩).
+Waterproof can unfold `a ∈ X ∩ Y` using `It suffices to prove that ...` and `Since ... we get that ...`.
+Below is an example.
 
 ```lean
 -- Example 2.2.3
@@ -35,6 +40,11 @@ Proof:
     We conclude by hypothesis
 QED
 ```
+
+Before doing an exercise, it helps to understand how to prove that a set is an interval in Waterproof.
+This is done by using `It suffices to prove that ...`.
+In the following line, you choose the interval you want to show the set equals.
+To illustrate this, a proof is shown below.
 
 ```lean
 -- Interval Example
@@ -61,6 +71,8 @@ Proof:
 QED
 ```
 
+The following exercise is to practice with intersections (∩).
+
 ::::multilean
 ```lean
 -- Exercise 2.2.6
@@ -80,9 +92,11 @@ QED
 ```
 ::::
 
+Below is another example of a proof with intersection.
+
 ```lean
--- Proposition 2.2.7
-Example "2.2.7"
+-- Proposition 2.2.8
+Example "2.2.8"
   Given: (U : Type) (X Y : Set U)
   Assume:
   Conclusion: X ⊆ Y ⇔ X ∩ Y = X
@@ -98,10 +112,7 @@ Proof:
     · Fix x
       Assume that x ∈ X
       Since X ⊆ Y and x ∈ X we get that x ∈ Y
-      Let's first prove that x ∈ X
-      · We conclude by hypothesis
-      Let's now prove that x ∈ Y
-      · We conclude by hypothesis
+      Since x ∈ X and x ∈ Y we conclude that x ∈ X ∩ Y
   Let's now prove that X ∩ Y = X ⇒ X ⊆ Y
   · Assume that X ∩ Y = X
     Fix x
@@ -112,10 +123,12 @@ Proof:
 QED
 ```
 
+Below is another exercise to practice using intersections.
+
 ::::multilean
 ```lean
--- Exercise 2.2.8
-Exercise "2.2.8"
+-- Exercise 2.2.9a
+Exercise "2.2.9a"
   Given: (U : Type) (X : Set U)
   Assume:
   Conclusion: X ∩ ∅ = ∅
@@ -131,38 +144,43 @@ QED
 ```
 ::::
 
+To show that two sets `A` and `B` are disjoint in Waterproof, use `It suffices to prove that A ∩ B is empty`.
+This can then be unfolded using the definition from Section 2.1.
+
+Below is a slightly adapted version of the textbook's Example 2.2.10 to make
+the proof less verbose.
+
 ```lean
--- Example 2.2.10
-Example "2.2.10"
+-- Example 2.2.11
+Example "2.2.11"
   Given:
   Assume:
-  Conclusion: {0, 2} ∩ {1, 3} = (∅ : Set ℝ)
+  Conclusion: {0, 2} is disjoint from {1, 3}
 Proof:
-  Let's first prove that {0, 2} ∩ {1, 3} ⊆ (∅ : Set ℝ)
+  It suffices to prove that {0, 2} ∩ {1, 3} is empty
+  It suffices to prove that ∀ x ∈ {0, 2} ∩ {1, 3}, False
   · Fix x
     Assume that x ∈ {0, 2} ∩ {1, 3}
     Since x ∈ {0, 2} ∩ {1, 3} we get that x ∈ {0, 2} and x ∈ {1, 3}
     Since x ∈ {0, 2} we get that x = 0 ∨ x = 2
-    Let's prove it's contradictory
     We discuss depending on whether x = 0 or x = 2
     · Assume that x = 0
       Since x ∈ {1, 3} we get that x = 1 ∨ x = 3
       We discuss depending on whether x = 1 or x = 3
       · Assume that x = 1
-        Since x = 0 and x = 1 we conclude that False
+        Since x = 1 and x = 0 we get that 0 = 1
+        We conclude by contradicting 0 = 1
       · Assume that x = 3
-        Since x = 0 and x = 3 we conclude that False
+        Since x = 0 and x = 3 we get that 0 = 3
+        We conclude by contradicting 0 = 3
     · Assume that x = 2
       Since x ∈ {1, 3} we get that x = 1 ∨ x = 3
       We discuss depending on whether x = 1 or x = 3
       · Assume that x = 1
-        Since x = 2 and x = 1 we conclude that False
+        Since x = 1 and x = 2 we get that 1 = 2
+        We conclude by contradicting 1 = 2
       · Assume that x = 3
-        Since x = 2 and x = 3 we conclude that False
-  Let's now prove that (∅ : Set ℝ) ⊆ {0, 2} ∩ {1, 3}
-  · Fix x
-    Assume that x ∈ (∅ : Set ℝ)
-    Let's prove it's contradictory
-    We conclude by hypothesis
+        Since x = 2 and x = 3 we get that 2 = 3
+        We conclude by contradicting 2 = 3
 QED
 ```

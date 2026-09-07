@@ -10,6 +10,7 @@ open WaterproofGenre
 configureAnonymousCaseSplittingLemmas le_or_gt lt_or_gt_of_ne lt_or_eq_of_le eq_or_lt_of_le caseSplittingClassical
 addAnonymousGoalSplittingLemma squareRoot
 addAnonymousGoalSplittingLemma add_pos
+addAnonymousGoalSplittingLemma trichtomyContradictions
 
 #doc (WaterproofGenre) "Unique Existence" =>
 

@@ -97,6 +97,7 @@ AnonymousGoalSplittingLemmasList setDifference :=
 AnonymousGoalSplittingLemmasList negatedMembership :=
   not_and_imp_not_right not_inter_mem not_mem_inter_of_not_left
   not_mem_inter_of_not_right not_mem_union_split not_union_mem
+  not_mem_left_of_not_mem_union not_mem_or_of_not_mem_inter
 
 -- ══════════════════════════════════════════════════════════════
 -- § Function images
@@ -131,9 +132,6 @@ AnonymousGoalSplittingLemmasList linearEquations := sub_eq_zero_of_linear_eq
 AnonymousGoalSplittingLemmasList pairSets :=
   mem_pair_cases mem_pair_intro_left mem_pair_intro_right
 
-AnonymousGoalSplittingLemmasList pairValueContradictions :=
-  zero_one_false zero_three_false two_one_false two_three_false
-
 -- ══════════════════════════════════════════════════════════════
 -- § Single intervals
 -- ══════════════════════════════════════════════════════════════
@@ -166,5 +164,11 @@ AnonymousGoalSplittingLemmasList deMorgan :=
 
 AnonymousGoalSplittingLemmasList squareRoot :=
   sqrt_pos_and_sq eq_sqrt_of_pos_sq neg_a_is_root
-  pos_sq zero_of_sq_eq_zero nonneg_sq nonneg_add_pos eq_and_gt_false
-  factors_zero
+  pos_sq zero_of_sq_eq_zero nonneg_sq nonneg_add_pos factors_zero
+
+-- ══════════════════════════════════════════════════════════════
+-- § Trichotomy contradictions
+-- ══════════════════════════════════════════════════════════════
+
+AnonymousGoalSplittingLemmasList trichtomyContradictions :=
+  eq_and_gt_false ge_and_le_false gt_and_le_false

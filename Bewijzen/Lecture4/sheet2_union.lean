@@ -18,10 +18,18 @@ addAnonymousGoalSplittingLemma singleInterval
 
 #doc (WaterproofGenre) "Union" =>
 
+Statements using unions (∪) can be proved in Waterproof using `It suffices to prove that ...` and `Since ... we get that ...`.
+All of these use the following equivalence,
+
+`x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B`
+
+Note that this is similar to intersections, but instead of conjunctions (and), it uses disjunctions (or).
+Below are exercises and examples on using unions.
+
 ::::multilean
 ```lean
--- Exercise 2.2.20
-Exercise "2.2.20"
+-- Exercise 2.2.25
+Exercise "2.2.25"
   Given:
   Assume:
   Conclusion: [-2, 5) ∪ [4, 7) is an interval
@@ -39,8 +47,8 @@ QED
 
 ::::multilean
 ```lean
--- Exercise 2.2.21
-Exercise "2.2.21"
+-- Exercise 2.2.26
+Exercise "2.2.26"
   Given: (U : Type) (X Y : Set U)
   Assume:
   Conclusion: X ⊆ Y ⇔ X ∪ Y = Y
@@ -56,65 +64,54 @@ QED
 ```
 ::::
 
--- Distributivity laws — combining intersection and union
+Distributivity laws — combining intersection and union
+
 ```lean
--- Example 2.2.22
-Example "2.2.22"
-  Given: (U : Type) (X Y W : Set U)
+-- Example 2.2.27
+Example "2.2.27"
+  Given: (U : Type) (X Y Z : Set U)
   Assume:
-  Conclusion: X ∩ (Y ∪ W) = (X ∩ Y) ∪ (X ∩ W)
+  Conclusion: X ∩ (Y ∪ Z) = (X ∩ Y) ∪ (X ∩ Z)
 Proof:
-  Let's first prove that X ∩ (Y ∪ W) ⊆ (X ∩ Y) ∪ (X ∩ W)
-  · Fix a
-    Assume that a ∈ X ∩ (Y ∪ W)
-    Since a ∈ X ∩ (Y ∪ W) we get that a ∈ X and a ∈ Y ∪ W
-    Since a ∈ Y ∪ W we get that a ∈ Y ∨ a ∈ W
-    We discuss depending on whether a ∈ Y or a ∈ W
-    · Assume that a ∈ Y
-      Let's prove that a ∈ X ∩ Y
-      · It suffices to prove that a ∈ X ∧ a ∈ Y
-        Let's first prove that a ∈ X
-        · We conclude by hypothesis
-        Let's now prove that a ∈ Y
-        · We conclude by hypothesis
-    · Assume that a ∈ W
-      Let's prove that a ∈ X ∩ W
-      · It suffices to prove that a ∈ X ∧ a ∈ W
-        Let's first prove that a ∈ X
-        · We conclude by hypothesis
-        Let's now prove that a ∈ W
-        · We conclude by hypothesis
-  Let's now prove that (X ∩ Y) ∪ (X ∩ W) ⊆ X ∩ (Y ∪ W)
-  · Fix a
-    Assume that a ∈ (X ∩ Y) ∪ (X ∩ W)
-    Since a ∈ (X ∩ Y) ∪ (X ∩ W) we get that a ∈ X ∩ Y ∨ a ∈ X ∩ W
-    We discuss depending on whether a ∈ X ∩ Y or a ∈ X ∩ W
-    · Assume that a ∈ X ∩ Y
-      Since a ∈ X ∩ Y we get that a ∈ X and a ∈ Y
-      It suffices to prove that a ∈ X ∧ a ∈ Y ∪ W
-      Let's first prove that a ∈ X
+  Let's first prove that X ∩ (Y ∪ Z) ⊆ (X ∩ Y) ∪ (X ∩ Z)
+  · Fix x ∈ X ∩ (Y ∪ Z)
+    Since x ∈ X ∩ (Y ∪ Z) we get that x ∈ X and x ∈ Y ∨ x ∈ Z
+    We discuss depending on whether x ∈ Y or x ∈ Z
+    · Assume that x ∈ Y
+      Let's prove that x ∈ X ∩ Y
+      Since x ∈ X and x ∈ Y we conclude that x ∈ X ∩ Y
+    · Assume that x ∈ Z
+      Let's prove that x ∈ X ∩ Z
+      Since x ∈ X and x ∈ Z we conclude that x ∈ X ∩ Z
+  Let's now prove that (X ∩ Y) ∪ (X ∩ Z) ⊆ X ∩ (Y ∪ Z)
+  · Fix x ∈ (X ∩ Y) ∪ (X ∩ Z)
+    We discuss depending on whether x ∈ X ∩ Y or x ∈ X ∩ Z
+    · Assume that x ∈ X ∩ Y
+      Since x ∈ X ∩ Y we get that x ∈ X and x ∈ Y
+      It suffices to prove that x ∈ X ∧ x ∈ Y ∪ Z
+      Let's first prove that x ∈ X
       · We conclude by hypothesis
-      Let's now prove that a ∈ Y ∪ W
-      · Let's prove that a ∈ Y
+      Let's now prove that x ∈ Y ∪ Z
+      · Let's prove that x ∈ Y
         · We conclude by hypothesis
-    · Assume that a ∈ X ∩ W
-      Since a ∈ X ∩ W we get that a ∈ X and a ∈ W
-      It suffices to prove that a ∈ X ∧ a ∈ Y ∪ W
-      Let's first prove that a ∈ X
+    · Assume that x ∈ X ∩ Z
+      Since x ∈ X ∩ Z we get that x ∈ X and x ∈ Z
+      It suffices to prove that x ∈ X ∧ x ∈ Y ∪ Z
+      Let's first prove that x ∈ X
       · We conclude by hypothesis
-      Let's now prove that a ∈ Y ∪ W
-      · Let's prove that a ∈ W
+      Let's now prove that x ∈ Y ∪ Z
+      · Let's prove that x ∈ Z
         · We conclude by hypothesis
 QED
 ```
 
 ::::multilean
 ```lean
--- Exercise 2.2.23
-Exercise "2.2.23"
-  Given: (U : Type) (X Y W : Set U)
+-- Exercise 2.2.28
+Exercise "2.2.28"
+  Given: (U : Type) (X Y Z : Set U)
   Assume:
-  Conclusion: X ∪ (Y ∩ W) = (X ∪ Y) ∩ (X ∪ W)
+  Conclusion: X ∪ (Y ∩ Z) = (X ∪ Y) ∩ (X ∪ Z)
 Proof:
 ```
 :::input

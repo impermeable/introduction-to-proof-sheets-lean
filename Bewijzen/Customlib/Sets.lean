@@ -48,9 +48,10 @@ def SetIsEmpty {U : Type} (X : Set U) : Prop :=
   ∀ _ ∈ X, False
 
 -- The notation `X is empty` reads as `∀ x ∈ X, False`
-namespace Bewijzen.EmptySetNotation
-scoped notation:50 X " is empty" => SetIsEmpty X
-end Bewijzen.EmptySetNotation
+notation:50 X " is empty" => SetIsEmpty X
+
+lemma empty_set_is_empty {α : Type} (X : Set α) (h : X = ∅) : X is empty := by
+  simp [h, SetIsEmpty]
 
 -- x ∈ ∅ implies False — lets "We conclude by contradicting x ∈ ∅" work directly.
 lemma mem_empty_contra {α : Type} {x : α} (h : x ∈ (∅ : Set α)) : False := by
@@ -66,6 +67,15 @@ lemma set_eq_empty_of_forall_not_mem {α : Type} {S : Set α}
 lemma false_of_mem_empty_set {α : Type} {S : Set α} {x : α}
     (hS : S = ∅) (hx : x ∈ S) : False := by
   rw [hS] at hx; exact hx
+
+-- ══════════════════════════════════════════════════════════════
+-- § Disjoint sets
+-- ══════════════════════════════════════════════════════════════
+
+def SetsAreDisjoint {U : Type} (A : Set U) (B : Set U) : Prop :=
+  A ∩ B is empty
+
+notation:50 A " is disjoint from " B => SetsAreDisjoint A B
 
 -- ══════════════════════════════════════════════════════════════
 -- § Propositional contradiction
@@ -116,6 +126,17 @@ lemma not_mem_union_split {U : Type} {x : U} {A B : Set U}
     have : x ∈ A ∪ B := Or.inr hB
     exact h this
 
+-- From x ∉ A ∪ B, extract just the left membership negation — lets
+-- "Since x ∉ A ∪ B we get that x ∉ A" work directly without also
+-- deriving (and discarding) x ∉ B.
+lemma not_mem_left_of_not_mem_union {U : Type} {x : U} {A B : Set U}
+    (h : x ∉ A ∪ B) : x ∉ A := (not_mem_union_split h).1
+
+-- De Morgan for negated intersection membership — lets
+-- "Since x ∉ A ∩ B we get that x ∉ A ∨ x ∉ B" work directly.
+lemma not_mem_or_of_not_mem_inter {U : Type} {x : U} {A B : Set U}
+    (h : x ∉ A ∩ B) : x ∉ A ∨ x ∉ B := not_and_or.mp h
+
 lemma not_union_mem {U : Type} {x : U} {A B : Set U}
     (h1 : x ∉ A) (h2 : x ∉ B) : ¬ (x ∈ A ∪ B) := by
   intro h
@@ -128,4 +149,5 @@ lemma not_union_mem {U : Type} {x : U} {A B : Set U}
 -- ══════════════════════════════════════════════════════════════
 
 lemma mem_union_left_bridge {U : Type} {x : U} {A B : Set U} (h : x ∈ A) : x ∈ A ∪ B := Or.inl h
+
 lemma mem_union_right_bridge {U : Type} {x : U} {A B : Set U} (h : x ∈ B) : x ∈ A ∪ B := Or.inr h

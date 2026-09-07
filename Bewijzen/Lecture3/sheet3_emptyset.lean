@@ -7,7 +7,6 @@ open WaterproofGenre
 open Verbose.NameLess
 open Verbose.Contradicting
 open scoped Bewijzen.IntervalNotation
-open scoped Bewijzen.EmptySetNotation
 
 configureAnonymousCaseSplittingLemmas caseSplittingClassical
 addAnonymousGoalSplittingLemma subsetTheory

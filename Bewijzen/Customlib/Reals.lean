@@ -91,9 +91,18 @@ lemma nonneg_add_pos (a b : ℝ) (_ : a ≥ 0) (_ : b > 0) : a + b > 0 := by
 
 lemma neg_a_is_root (a : ℝ) : (-a) ^ 2 + 2 * a * (-a) + a ^ 2 = 0 := by ring
 
--- A quantity cannot be both zero and strictly positive — closes the
--- `a ^ 2 + b ^ 2 = 0` vs `a ^ 2 + b ^ 2 > 0` contradiction.
+-- ══════════════════════════════════════════════════════════════
+-- § Trichotomy contradictions
+-- ══════════════════════════════════════════════════════════════
+
+-- A quantity cannot be both zero and strictly positive
 lemma eq_and_gt_false {a b : ℝ} (h1 : a = b) (h2 : a > b) : False := by linarith
+
+-- A quantity cannot be both strictly positive and strictly negative
+lemma ge_and_le_false {a b : ℝ} (h1 : a > b) (h2 : a < b) : False := by linarith
+
+-- A quantity cannot be both positive and strictly negative
+lemma gt_and_le_false {a b : ℝ} (h1 : a ≥ b) (h2 : a < b) : False := by linarith
 
 -- ══════════════════════════════════════════════════════════════
 -- § Square / absolute value lemmas
@@ -303,13 +312,6 @@ end Bewijzen.PairSetNotation
 lemma mem_pair_cases (x a b : ℝ) (h : x ∈ rpair a b) : x = a ∨ x = b := h
 lemma mem_pair_intro_left  (x a b : ℝ) (h : x = a) : x ∈ rpair a b := Or.inl h
 lemma mem_pair_intro_right (x a b : ℝ) (h : x = b) : x ∈ rpair a b := Or.inr h
-
--- Pair-value contradiction bridges: two different values for the same x are
--- contradictory (used to show e.g. {0, 2} ∩ {1, 3} = ∅ by case analysis).
-lemma zero_one_false {x : ℝ} (_ : x = 0) (_ : x = 1) : False := by linarith
-lemma zero_three_false {x : ℝ} (_ : x = 0) (_ : x = 3) : False := by linarith
-lemma two_one_false {x : ℝ} (_ : x = 2) (_ : x = 1) : False := by linarith
-lemma two_three_false {x : ℝ} (_ : x = 2) (_ : x = 3) : False := by linarith
 
 -- ══════════════════════════════════════════════════════════════
 -- § Interval arithmetic helpers
