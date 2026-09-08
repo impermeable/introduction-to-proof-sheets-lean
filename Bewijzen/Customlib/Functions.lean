@@ -18,7 +18,16 @@ import Verbose.English.All
 --
 -- Works in: Given:, Conclusion:, proof bodies
 -- Limitation: Does NOT work in Assume: clauses (Verbose parser limitation)
-notation:max g "(" y ")" => g y
+--
+-- `noWs` requires the opening parenthesis to follow the function immediately,
+-- with no space.  Without it every `ident (arg)` in a sheet — including
+-- ordinary Lean application inside preamble metaprograms, e.g.
+-- `Name.mkSimple ("x" ++ "y")` — parses both as this notation and as
+-- application, and elaboration fails with "Ambiguous term".  Students write
+-- `f(x)` unspaced, and a spaced `f (x)` is plain application meaning exactly
+-- the same thing, so nothing is lost.
+syntax:max term noWs "(" term ")" : term
+macro_rules | `($g:term($y:term)) => `($g $y)
 
 -- ══════════════════════════════════════════════════════════════
 -- § Notation: injectivity, surjectivity, bijectivity

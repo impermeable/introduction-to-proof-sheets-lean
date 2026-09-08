@@ -107,7 +107,7 @@ Below is an exercise to practice with an indexed intersection over all of `ℕ` 
 Exercise "2.2.36a"
   Given:
   Assume:
-  Conclusion: (⋂ (n : ℕ), [n]) = (∅ : Set ℕ)
+  Conclusion: (⋂ (n : ℕ), [n]) = ∅
 Proof:
 ```
 :::input

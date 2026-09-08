@@ -166,3 +166,28 @@ lemma three_div_four_mul_lt {M : ℕ} {ε : ℝ} (hε : ε > 0) (hM : (M : ℝ) 
   rw [div_lt_iff₀ (by linarith : (0 : ℝ) < 4 * M)]
   rw [gt_iff_lt, div_lt_iff₀ (by positivity : (0 : ℝ) < 4 * ε)] at hM
   linarith
+
+-- ══════════════════════════════════════════════════════════════
+-- § Phrasing: `We obtain M ∈ ℕ such that …` (issue #72)
+-- ══════════════════════════════════════════════════════════════
+
+-- The type annotation in `We obtain M : ℕ such that M ≥ 1 and M > 3 / (4 * ε)`
+-- is load-bearing, not decoration: without it `M` is elaborated in ℝ (anchored
+-- by `3 / (4 * ε)`), the requested fact becomes `∃ M : ℝ, …`, and the
+-- anonymous lemma `archimedean_nat : ∃ M : ℕ, …` no longer matches.  It cannot
+-- be dropped — but it can be worded the way it is written on paper.
+-- One variant per fact-count, mirroring Verbose's own `newObjectNameLess`
+-- grammar (`such that p`, `such that p and q`, `such that p, q and r`); the
+-- `and`-chaining lives in that grammar, so a single `term` capture would stop
+-- at the first `and`.
+open Verbose.NameLess in
+macro "We obtain " x:ident " ∈ " T:term " such that " p:term : tactic =>
+  `(tactic| We obtain $x:ident : $T such that $p)
+
+open Verbose.NameLess in
+macro "We obtain " x:ident " ∈ " T:term " such that " p:term " and " q:term : tactic =>
+  `(tactic| We obtain $x:ident : $T such that $p and $q)
+
+open Verbose.NameLess in
+macro "We obtain " x:ident " ∈ " T:term " such that " p:term ", " q:term " and " r:term : tactic =>
+  `(tactic| We obtain $x:ident : $T such that $p, $q and $r)

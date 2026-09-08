@@ -66,7 +66,7 @@ it down keeps the proof readable, exactly as you would do on paper.
 
 Instead of a ceiling function we use that there is a natural number `M` above any
 given real number, which we may take to be at least `1`:
-`We obtain M : ℕ such that M ≥ 1 and M > 1 / ε`. Both are valid on paper; this
+`We obtain M ∈ ℕ such that M ≥ 1 and M > 1 / ε`. Both are valid on paper; this
 style fits Verbose better, and `M ≥ 1` is what makes dividing by `M` harmless.
 
 The estimate itself is a `Calc` chain, one line per step, exactly as you would
@@ -87,7 +87,7 @@ Proof:
   It suffices to prove that ∃ l : ℝ, y converges to l
   Let's prove that 0 works
   Fix ε > 0
-  We obtain M : ℕ such that M ≥ 1 and M > 1 / ε
+  We obtain M ∈ ℕ such that M ≥ 1 and M > 1 / ε
   Let's prove that M works
   It suffices to prove that ∀ n ≥ M, |y(n) - 0| < ε
   Fix n ≥ M

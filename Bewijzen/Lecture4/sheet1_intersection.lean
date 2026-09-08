@@ -159,8 +159,7 @@ Example "2.2.11"
 Proof:
   It suffices to prove that {0, 2} ∩ {1, 3} is empty
   It suffices to prove that ∀ x ∈ {0, 2} ∩ {1, 3}, False
-  · Fix x
-    Assume that x ∈ {0, 2} ∩ {1, 3}
+  · Fix x ∈ {0, 2} ∩ {1, 3}
     Since x ∈ {0, 2} ∩ {1, 3} we get that x ∈ {0, 2} and x ∈ {1, 3}
     Since x ∈ {0, 2} we get that x = 0 ∨ x = 2
     We discuss depending on whether x = 0 or x = 2

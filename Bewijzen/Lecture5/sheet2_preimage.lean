@@ -1,11 +1,14 @@
 import WaterproofGenre
 import Verbose.English.All
 import Bewijzen.Customlib.Functions
+import Bewijzen.Customlib.Sets
 import Bewijzen.Customlib.Lists
 
 open WaterproofGenre
 open Verbose.NameLess
-open Set (univ)
+
+-- Lets a written type X denote the set of all its elements (issue #67).
+readTypesAsSets
 
 addAnonymousGoalSplittingLemma subsetTheory
 addAnonymousGoalSplittingLemma imageMembership
@@ -44,7 +47,7 @@ For technical reasons, Waterproof considers the empty set in the exercise below 
 Exercise "3.1.41a"
   Given: (X Y : Type) (f : X → Y)
   Assume:
-  Conclusion: f ⁻¹' (∅ : Set Y) = (∅ : Set X)
+  Conclusion: f ⁻¹' ∅ = ∅
 Proof:
 ```
 :::input
@@ -62,7 +65,7 @@ QED
 Exercise "3.1.41b"
   Given: (X Y : Type) (f : X → Y)
   Assume:
-  Conclusion: f ⁻¹' (univ : Set Y) = (univ : Set X)
+  Conclusion: f ⁻¹' Y = X
 Proof:
 ```
 :::input

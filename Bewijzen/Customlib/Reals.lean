@@ -17,7 +17,12 @@ import Verbose.English.All
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Algebra.Order.Ring.Unbundled.Basic
 import Mathlib.Order.Interval.Set.Basic
+import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.NumberTheory.Real.Irrational
+import Bewijzen.Customlib.Rational
+
+open Finset
 
 -- ══════════════════════════════════════════════════════════════
 -- § Elaboration of absolute values
@@ -67,6 +72,22 @@ lemma sqrt_pos_and_sq {a : ℝ} (_ : a > 0) : √a > 0 ∧ √a ^ 2 = a :=
 
 lemma eq_sqrt_of_pos_sq {x a : ℝ} (hx : x > 0) (_ : a > 0) (hxa : x ^ 2 = a) : x = √a := by
   rw [← hxa, Real.sqrt_sq hx.le]
+
+-- Bridge lemma: if n is not a perfect square, then Nat.sqrt n < √n
+-- Used in the infinite descent proof that √n is irrational for non-square n.
+lemma nat_sqrt_lt_sqrt_of_not_is_square {n : ℕ} (h : ¬IsSquare n) : (Nat.sqrt n : ℝ) < √(n : ℝ) := by
+  have h_sq_le : (Nat.sqrt n : ℕ) ^ 2 ≤ n := by
+    rw [show (Nat.sqrt n : ℕ) ^ 2 = (Nat.sqrt n : ℕ) * (Nat.sqrt n : ℕ) by ring]
+    exact Nat.sqrt_le n
+  have h_sq_strict : (Nat.sqrt n : ℕ) ^ 2 < n := by
+    by_contra h_not
+    have : (Nat.sqrt n : ℕ) ^ 2 = n := by omega
+    exfalso
+    apply h
+    use Nat.sqrt n
+    linarith
+  have h_reals : (Nat.sqrt n : ℝ) ^ 2 < (n : ℝ) := by exact_mod_cast h_sq_strict
+  exact Real.lt_sqrt_of_sq_lt h_reals
 
 -- ══════════════════════════════════════════════════════════════
 -- § Quadratic / sum-of-squares helpers
@@ -312,6 +333,21 @@ end Bewijzen.PairSetNotation
 lemma mem_pair_cases (x a b : ℝ) (h : x ∈ rpair a b) : x = a ∨ x = b := h
 lemma mem_pair_intro_left  (x a b : ℝ) (h : x = a) : x ∈ rpair a b := Or.inl h
 lemma mem_pair_intro_right (x a b : ℝ) (h : x = b) : x ∈ rpair a b := Or.inr h
+
+-- Bridge lemma: √n is irrational when n is not a perfect square.
+-- Proof using mathlib's irrational_sqrt_natCast_iff.
+lemma irrational_sqrt_non_square {n : ℕ} (h_not_sq : ¬IsSquare n) : (√(n : ℝ)) is irrational := by
+  have : Irrational (Real.sqrt (n : ℝ)) ↔ ¬IsSquare n := irrational_sqrt_natCast_iff
+  exact this.mpr h_not_sq
+
+addAnonymousGoalSplittingLemma irrational_sqrt_non_square
+
+-- Pair-value contradiction bridges: two different values for the same x are
+-- contradictory (used to show e.g. {0, 2} ∩ {1, 3} = ∅ by case analysis).
+lemma zero_one_false {x : ℝ} (_ : x = 0) (_ : x = 1) : False := by linarith
+lemma zero_three_false {x : ℝ} (_ : x = 0) (_ : x = 3) : False := by linarith
+lemma two_one_false {x : ℝ} (_ : x = 2) (_ : x = 1) : False := by linarith
+lemma two_three_false {x : ℝ} (_ : x = 2) (_ : x = 3) : False := by linarith
 
 -- ══════════════════════════════════════════════════════════════
 -- § Interval arithmetic helpers

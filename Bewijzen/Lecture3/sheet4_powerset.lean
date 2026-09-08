@@ -27,9 +27,9 @@ Lemma exercise_2_1_27 "2.1.27"
   Assume:
   Conclusion: ∅ ⊆ X
 Proof:
-  Fix x ∈ (∅ : Set U)
+  Fix x ∈ ∅
   Let's prove it's contradictory
-  We conclude by contradicting x ∈ (∅ : Set U)
+  We conclude by contradicting x ∈ ∅
 QED
 
 #doc (WaterproofGenre) "Power Set" =>
@@ -117,7 +117,7 @@ Below are two options for exercise 2.1.36a. Prove the one that is true.
 Exercise "2.1.36b (true)"
   Given: (U : Type)
   Assume:
-  Conclusion: 𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 (∅ : Set U))
+  Conclusion: 𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 ∅)
 Proof:
 ```
 :::input
@@ -135,7 +135,7 @@ QED
 Exercise "2.1.36b (false)"
   Given: (U : Type)
   Assume:
-  Conclusion: ¬ (𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 (∅ : Set U)))
+  Conclusion: ¬ (𝒫 (∅ : Set U) ∈ 𝒫 (𝒫 ∅))
 Proof:
 ```
 :::input

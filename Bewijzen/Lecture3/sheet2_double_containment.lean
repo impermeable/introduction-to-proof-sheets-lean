@@ -1,6 +1,7 @@
 import WaterproofGenre
 import Verbose.English.All
 import Bewijzen.Customlib.Reals
+import Bewijzen.Customlib.Sets
 import Bewijzen.Customlib.Lists
 
 open WaterproofGenre
@@ -64,8 +65,7 @@ Example "2.1.16"
   Conclusion: {x | x ^ 2 ≤ 1} = [-1, 1]
 Proof:
   Let's first prove that {x | x ^ 2 ≤ 1} ⊆ [-1, 1]
-  · Fix x
-    Assume that x ^ 2 ≤ 1
+  · Fix x ∈ {x | x ^ 2 ≤ 1}
     Since x ^ 2 ≤ 1 we get that (1 - x) * (1 + x) ≥ 0
     Fact : (1 - x ≥ 0 ∧ 1 + x ≥ 0) ∨ (1 - x ≤ 0 ∧ 1 + x ≤ 0) from multiplication_dichotomy
       applied to 1 - x and 1 + x using that (1 - x) * (1 + x) ≥ 0
