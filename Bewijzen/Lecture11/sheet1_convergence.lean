@@ -46,35 +46,9 @@ addAnonymousGoalSplittingLemma inv_lt_bridge
 
 # 9.2 Convergence
 
-A sequence `u : ℕ → ℝ` *converges to* `l` when, for every `ε > 0`, the terms `u(n)`
-eventually stay within `ε` of `l`:
+The biggest difference between Waterproof and paper proofs in this exercise sheet, is the way sequences are defined. They are defined as functions from the naturals to the reals, and the definition itself can be found all the way at the end of the line: `1 / n` for the first example.
 
-  `u converges to l  :=  ∀ ε > 0, ∃ N, ∀ n ≥ N, |u(n) - l| < ε`
-
-and `u converges` means `u` has some limit.
-
-## Proposition 9.2.16
-
-Every proof on this sheet has the same opening moves: unpack `u converges` into
-`∃ l : ℝ, u converges to l`, choose a candidate limit, fix an `ε > 0`, pick a
-threshold `M`, announce that `M` works, restate what `M` still has to satisfy,
-and fix an `n ≥ M`. What is left is an estimate of `|u(n) - l|`.
-
-Restating the goal with `It suffices to prove that ∀ n ≥ M, |u(n) - l| < ε` is
-never strictly necessary — Lean already knows what is left to prove — but writing
-it down keeps the proof readable, exactly as you would do on paper.
-
-Instead of a ceiling function we use that there is a natural number `M` above any
-given real number, which we may take to be at least `1`:
-`We obtain M ∈ ℕ such that M ≥ 1 and M > 1 / ε`. Both are valid on paper; this
-style fits Verbose better, and `M ≥ 1` is what makes dividing by `M` harmless.
-
-The estimate itself is a `Calc` chain, one line per step, exactly as you would
-write it on paper. A step is closed either `by computation` (algebra: substituting
-the definition of the sequence and removing the absolute value signs) or `since`
-the facts you would quote on paper for that step. Do not try to jump from
-`|u(n) - l|` to `ε` in one go: each line of the chain should be a step you could
-defend out loud, and if one of them is not, ask your teacher to check it.
+We also want to start by unpacking the definition of converges with `It suffices to prove that ...`
 
 ```lean
 noncomputable abbrev y : ℕ → ℝ := fun n => 1 / n
@@ -98,8 +72,9 @@ Proof:
     _ < ε since ε > 0 and M > 1 / ε
 QED
 ```
+Next we have 4 convergence exercises.
 
-## Exercise 9.2.20
+
 
 ```lean
 noncomputable abbrev a : ℕ → ℝ := fun n => 1 / ((n : ℝ) * n)
@@ -123,13 +98,7 @@ QED
 ```
 ::::
 
-## Exercise 9.2.21
 
-Here the limit is not `0`, so the absolute value hides a subtraction of fractions:
-rewriting `|b(n) - 3 / 2|` as `3 / (2 * (2 * n + 1))` is the first step of the
-chain. The threshold `M > 3 / (4 * ε)` is found by working backwards from the
-last line of the chain — do that computation on scrap paper first, then write the
-proof forwards.
 
 ```lean
 noncomputable abbrev b : ℕ → ℝ := fun n => (3 * (n : ℝ)) / (2 * n + 1)
@@ -153,11 +122,6 @@ QED
 ```
 ::::
 
-## Exercise 9.2.22
-
-Rewriting `|c(n) - 7 / 2|` takes two separate moves, so give each its own line:
-first cancel the `3` against the `7 / 2`, then put what is left over one
-denominator and drop the absolute value signs.
 
 ```lean
 noncomputable abbrev c : ℕ → ℝ := fun n => 3 + ((n : ℝ) - 1) / (2 * n + 1)
@@ -181,7 +145,6 @@ QED
 ```
 ::::
 
-## Exercise 9.2.23
 
 ```lean
 noncomputable abbrev d : ℕ → ℝ := fun n => 1 / (2 : ℝ) ^ n
