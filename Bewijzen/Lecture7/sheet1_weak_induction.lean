@@ -205,15 +205,6 @@ lemma two_pow_double_sub_one (m : ℕ) : 2 * 2 ^ (m + 1) - 1 = 2 ^ (m + 1 + 1) -
 
 addAnonymousComputeLemma two_pow_double_sub_one
 
--- Registered statement of the result of Exercise 4.2.5, citable later
--- (also used by the strong induction sheet).
-lemma sum_pow_two (n : ℕ) : ∑ k ∈ [0, n], 2 ^ k = 2 ^ (n + 1) - 1 := by
-  induction n with
-  | zero => decide
-  | succ n ih => rw [sum_icc_succ_top 0 n (fun k => 2 ^ k) (by omega), ih, two_pow_sub_one_step]
-
-addAnonymousFactSplittingLemma sum_pow_two
-
 -- Bridge (fact): 1 - r ≠ 0 from r ≠ 1.
 lemma one_sub_ne_zero {r : ℝ} (h : r ≠ 1) : 1 - r ≠ 0 := by
   intro h'
@@ -257,19 +248,27 @@ addAnonymousGoalSplittingLemma sum_cubes_via_formula
 
 #doc (WaterproofGenre) "Weak induction" =>
 
-
-In Waterproof, you can start a proof by (weak induction) using
- `Let's proceed by induction on n`, which creates
+In Waterproof, you can start a proof by weak induction using
+`Let's proceed by induction on n`, which creates
 two goals, marked with `·` bullets: first the base case, then the induction
 step. In the induction step you write `Fix n` to fix a natural number and
-`Assume that <statement about n>` to assume the *induction hypothesis*.
+`Assume that [statement for n]` to assume the *induction hypothesis*.
+Then, the goal is to prove the statement for `n + 1`.
 
 Calculation chains are written with `Calc`. Each step carries its justification:
-`by computation` for routine algebra, `since <fact>` to use a hypothesis (such
+`by computation` for routine algebra, `since [fact]` to use a hypothesis (such
 as the induction hypothesis) or a previously proven statement.
 
+In the following examples and exercises, we use the sigma summation notation.
+In Waterproof it is written as:
+
+`∑ k ∈ S, [function of k]`
+
+First we specify an index `k` and the set `S` over which the summation runs.
+After the comma, we write the function of `k` that is being summed.
+
 ```lean
-Lemma proposition_4_2_3 "4.2.3"
+Example "4.2.3"
   Given:
   Assume:
   Conclusion: ∀ n : ℕ, ∑ k ∈ [0, n], k = n * (n + 1) / 2
@@ -280,7 +279,7 @@ Proof:
     Assume that ∑ k ∈ [0, n], k = n * (n + 1) / 2
     Calc
       ∑ k ∈ [0, n + 1], k
-          = (∑ k ∈ [0, n], k) + (n + 1) by computation
+        = (∑ k ∈ [0, n], k) + (n + 1) by computation
       _ = n * (n + 1) / 2 + (n + 1) since ∑ k ∈ [0, n], k = n * (n + 1) / 2
       _ = (n + 1) * (n + 2) / 2 by computation
 QED
@@ -300,7 +299,8 @@ Proof:
     Since 3 ∣ n ^ 3 - n we get k such that n ^ 3 - n = 3 * k
     Let's prove that k + n ^ 2 + n works
     Calc
-      (n + 1) ^ 3 - (n + 1) = n ^ 3 + 3 * n ^ 2 + 3 * n + 1 - n - 1 by computation
+      (n + 1) ^ 3 - (n + 1)
+        = n ^ 3 + 3 * n ^ 2 + 3 * n + 1 - n - 1 by computation
       _ = n ^ 3 - n + 3 * n ^ 2 + 3 * n + 1 - 1 by computation
       _ = n ^ 3 - n + 3 * n ^ 2 + 3 * n by computation
       _ = 3 * k + 3 * n ^ 2 + 3 * n since n ^ 3 - n = 3 * k
@@ -309,7 +309,7 @@ QED
 ```
 
 Now prove the following sum formula by induction yourself, following the
-pattern of proposition 4.2.3 and Example 4.2.4.
+pattern of examples 4.2.3 and 4.2.4.
 
 ::::multilean
 ```lean
@@ -329,11 +329,12 @@ QED
 ```
 ::::
 
-Sometimes the statement only holds from some number onwards. The sheet states
-the lower bound directly in the `Conclusion:` header, for instance
-`Conclusion: ∀ n ≥ 4, 3 * n < 2 ^ n`, and `Let's proceed by induction on n`
+Sometimes the statement only holds from some number onwards. The lower bound
+is stated directly in the `Conclusion:` header, for instance
+`Conclusion: ∀ n ≥ 4, 3 * n < 2 ^ n`.
+The proof step `Let's proceed by induction on n`
 handles the shift for you: the base case is the statement for `4`, and in the
-induction step you `Fix n ≥ 4` and `Assume that` the statement for `n`, and
+induction step you `Fix n ≥ 4`, then `Assume that [the statement for n]` and
 prove it for `n + 1`.
 
 ```lean
@@ -347,7 +348,8 @@ Proof:
   · Fix n ≥ 4
     Assume that 3 * n < 2 ^ n
     Calc
-      3 * (n + 1) = 3 * n + 3 by computation
+      3 * (n + 1)
+        = 3 * n + 3 by computation
       _ < 2 ^ n + 3 since 3 * n < 2 ^ n
       _ < 2 ^ n + 2 ^ 4 by computation
       _ ≤ 2 ^ n + 2 ^ n since 2 ^ 4 ≤ 2 ^ n
@@ -369,23 +371,23 @@ Proof:
     Assume that ∑ k ∈ [0, n], k ^ 3 = n ^ 2 * (n + 1) ^ 2 / 4
     Calc
       ∑ k ∈ [0, n + 1], k ^ 3
-          = (∑ k ∈ [0, n], k ^ 3) + (n + 1) ^ 3 by computation
+        = (∑ k ∈ [0, n], k ^ 3) + (n + 1) ^ 3 by computation
       _ = n ^ 2 * (n + 1) ^ 2 / 4 + (n + 1) ^ 3 since ∑ k ∈ [0, n], k ^ 3 = n ^ 2 * (n + 1) ^ 2 / 4
       _ = (n ^ 2 * (n + 1) ^ 2 + 4 * (n + 1) ^ 3) / 4 by computation
       _ = ((n + 1) ^ 2 * (n ^ 2 + 4 * (n + 1))) / 4 by computation
-      _ = ((n + 1) ^ 2 * (n + 1 + 1) ^ 2) / 4 by computation
+      _ = ((n + 1) ^ 2 * (n + 2) ^ 2) / 4 by computation
 QED
 ```
 
 For the geometric sum the denominator `1 - r` must be nonzero. Derive the fact
-`1 - r ≠ 0` from the assumption `r ≠ 1` first, then cite it where the algebra
-divides by `1 - r`.
+`1 - r ≠ 0` from the assumption `r ≠ 1` first, then cite in the proof steps
+where we divide by `1 - r`.
 
 ::::multilean
 ```lean
 Exercise "4.2.11"
   Given: (a r : ℝ)
-  Assume: (h_ne : r ≠ 1)
+  Assume: (_ : r ≠ 1)
   Conclusion: ∀ n : ℕ, ∑ k ∈ [0, n], a * r ^ k = a * (1 - r ^ (n + 1)) / (1 - r)
 Proof:
 ```

@@ -181,22 +181,26 @@ addAnonymousGoalSplittingLemma sub_le_self_of_ge
 lemma succ_eq_of_sub_two_eq {m a b : ℕ} (hm : m ≥ 10) (h : m - 2 = 3 * a + 5 * b) :
     m + 1 = 3 * (a + 1) + 5 * b := by omega
 
+-- Registered statement of the result of Exercise 4.2.5, citable later
+-- (also used by the strong induction sheet).
+lemma sum_pow_two (n : ℕ) : ∑ k ∈ [0, n], 2 ^ k = 2 ^ (n + 1) - 1 := by
+  induction n with
+  | zero => decide
+  | succ n ih => rw [sum_icc_succ_top 0 n (fun k => 2 ^ k) (by omega), ih, two_pow_sub_one_step]
+
+addAnonymousFactSplittingLemma sum_pow_two
+
 addAnonymousGoalSplittingLemma succ_eq_of_sub_two_eq
 
 #doc (WaterproofGenre) "Strong induction — sequences, recursive definitions, and coin sums" =>
 
-You can start a proof by strong induction using `Let's proceed by strong induction on m`, which
-creates the base case and the induction step
-`∀ m, (∀ k ≤ m, k ≥ <lower bound> → <claim for k>) → <claim for m + 1>`. When
-several base cases are needed, list their values after `with base cases`, with
-the values separated by commas and `and`:
+You can start a proof by strong induction using `Let's proceed by strong induction on n`, which
+creates the base case and the induction step. In the induction step you write `Fix n`, then
+`Assume ∀ k ≤ n, [statement for k]` to assume the induction hypothesis for all `k` up to `n` and
+prove the statement for `n + 1`.
 
-`Let's proceed by strong induction on m, with base cases 0 and 1`
-
-This creates the goals for `m = 0` and `m = 1` and a step goal that starts at
-`m ≥ 1`, so the step only has to work from the first value where the
-recurrence applies. The same announcement works on a goal `∀ m ≥ 3, ...` with
-`with base cases 3, 4 and 5`.
+In the following example `b : ℕ → ℕ` denotes a function from naturals to naturals, that is,
+a sequence. `b n` denotes the `n`-th element of the sequence.
 
 ```lean
 Example "4.3.4"
@@ -211,14 +215,22 @@ Proof:
   · Fix n
     Assume that ∀ k ≤ n, b k = 2 ^ k
     Calc
-      b (n + 1) = 1 + ∑ k ∈ [0, n], b k
-          since ∀ p : ℕ, b (p + 1) = 1 + ∑ k ∈ [0, p], b k
+      b (n + 1)
+        = 1 + ∑ k ∈ [0, n], b k since ∀ m : ℕ, b (m + 1) = 1 + ∑ k ∈ [0, m], b k
       _ = 1 + ∑ k ∈ [0, n], 2 ^ k since ∀ k ≤ n, b k = 2 ^ k
       _ = 1 + (2 ^ (n + 1) - 1) since ∑ k ∈ [0, n], 2 ^ k = 2 ^ (n + 1) - 1
       _ = 2 ^ (n + 1) by computation
 QED
 ```
 
+When several base cases are needed, list their values after `with base cases`. For example:
+
+`Let's proceed by strong induction on m, with base cases 0 and 1`
+
+This creates the goals for `n = 0` and `n = 1` and a step goal that starts at
+`n ≥ 1`, so the step only has to work from the first value where the
+recurrence applies. The same announcement works on a goal `∀ n ≥ 3, ...` with
+`with base cases 3, 4 and 5`.
 
 ::::multilean
 ```lean
