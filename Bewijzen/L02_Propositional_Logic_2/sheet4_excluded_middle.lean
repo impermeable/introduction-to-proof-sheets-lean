@@ -1,0 +1,101 @@
+import WaterproofGenre
+import Verbose.English.All
+import Bewijzen.Customlib.Integers
+
+open WaterproofGenre
+open Verbose.NameLess
+open Verbose.Contradicting
+
+addAnonymousGoalSplittingLemma odd_of_two_mul_add_one
+addAnonymousGoalSplittingLemma even_and_odd_false
+
+#doc (WaterproofGenre) "Excluded Middle" =>
+
+# Law of excluded middle
+
+The law of excluded middle may be useful to prove some statements that are unprovable without it. It states that for any proposition `p`, either `p` or `¬p` holds.
+In Waterproof, you can use `We discuss depending on whether p or ¬ p` to split into cases.
+
+When we have contradictory propositions in our assumptions and want to prove by contradiction, we can use `Let's prove it's contradictory`, which substitutes our goal with `False`. It is always sufficient to prove `False`, since anything follows from `False`.
+
+:::hint "📦 Technical details"
+```lean
+configureAnonymousCaseSplittingLemmas Classical.em Int.even_or_odd
+```
+:::
+
+```lean
+Example "1.1.62"
+  Given: (p q : Prop)
+  Assume: (_ : ¬(p ∧ q))
+  Conclusion: ¬p ∨ ¬q
+Proof:
+  We discuss depending on whether p or ¬ p
+  · Assume that p
+    We discuss depending on whether q or ¬ q
+    · Assume that q
+      Let's prove it's contradictory
+      Since p and q we get that p ∧ q
+      We conclude by contradicting ¬(p ∧ q) and p ∧ q
+    · Assume that ¬q
+      Let's prove that ¬q
+      · We conclude by hypothesis
+  · Assume that ¬p
+    Let's prove that ¬p
+    · We conclude by hypothesis
+QED
+```
+
+Proposition 1.1.63 is another example of using the law of excluded middle.
+
+```lean
+Example "1.1.63"
+  Given: (a b : ℤ)
+  Assume:
+  Conclusion: (a * b) is even ⇒ a is even ∨ b is even
+Proof:
+  Assume that (a * b) is even
+  We discuss depending on whether a is even or a is odd
+  · Assume that a is even
+    Let's prove that a is even
+    · We conclude by hypothesis
+  · Assume that a is odd
+    We discuss depending on whether b is even or b is odd
+    · Assume that b is even
+      Let's prove that b is even
+      · We conclude by hypothesis
+    · Assume that b is odd
+      Let's prove it's contradictory
+      Since a is odd we get k such that a = 2 * k + 1
+      Since b is odd we get l such that b = 2 * l + 1
+      Since a = 2 * k + 1 and b = 2 * l + 1 
+        we get that a * b = (2 * k + 1) * (2 * l + 1)
+      Since a * b = (2 * k + 1) * (2 * l + 1) 
+        we get that a * b = 2 * (2 * k * l + k + l) + 1
+      Since a * b = 2 * (2 * k * l + k + l) + 1 
+        we get that a * b is odd
+      We conclude by contradicting a * b is even and a * b is odd
+QED
+```
+
+In the next exercise you can practice applying the law of excluded middle.
+
+::::multilean
+```lean
+Exercise "1.1.65"
+  Given: (p q : Prop)
+  Assume:
+  Conclusion: (¬q ⇒ ¬p) ⇒ (p ⇒ q)
+Proof:
+```
+:::input
+```lean
+
+```
+:::
+```lean
+QED
+```
+::::
+
+

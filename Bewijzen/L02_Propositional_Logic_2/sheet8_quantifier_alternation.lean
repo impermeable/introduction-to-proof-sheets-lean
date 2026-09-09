@@ -1,0 +1,84 @@
+import WaterproofGenre
+import Verbose.English.All
+import Bewijzen.Customlib.Integers
+
+open WaterproofGenre
+open Verbose.NameLess
+open Verbose.Contradicting
+
+#doc (WaterproofGenre) "Quantifier Alternation" =>
+
+# Order of quantifiers
+
+When quantifiers alternate (e.g., `∃ y, ∀ x, ...` versus `∀ x, ∃ y, ...`), the order matters.
+In general, `∃ y, ∀ x, P x y` implies `∀ x, ∃ y, P x y`, but not the other way around.
+The below exercises provide an explicit example.
+
+⚠️ By default, Waterproof treats the literals 0, 1, 2, … as natural numbers. When you use such a literal explicitly
+while working in `ℤ`, `ℚ`, or `ℝ`, you may need to annotate a set it belongs to, for example `(0 : ℤ)`.
+
+:::hint "📦 Technical details"
+```lean
+configureAnonymousCaseSplittingLemmas le_or_gt lt_or_gt_of_ne lt_or_eq_of_le eq_or_lt_of_le Classical.em Int.even_or_odd
+
+addAnonymousGoalSplittingLemma even_witnesses
+addAnonymousGoalSplittingLemma odd_witnesses
+addAnonymousGoalSplittingLemma even_of_two_mul
+addAnonymousGoalSplittingLemma odd_of_two_mul_add_one
+addAnonymousGoalSplittingLemma even_add_even
+addAnonymousGoalSplittingLemma odd_add_odd
+addAnonymousGoalSplittingLemma even_add_odd
+addAnonymousGoalSplittingLemma odd_add_even
+addAnonymousGoalSplittingLemma even_and_odd_false
+```
+:::
+
+::::multilean
+```lean
+Exercise "1.2.39a"
+  Given:
+  Assume:
+  Conclusion: ∀ x : ℤ, ∃ y : ℤ, x + y is even
+Proof:
+```
+:::input
+```lean
+
+```
+:::
+```lean
+QED
+```
+::::
+
+::::multilean
+```lean
+Exercise "1.2.39b"
+  Given:
+  Assume:
+  Conclusion: ¬(∃ y : ℤ, ∀ x : ℤ, (x + y) is even)
+Proof:
+```
+:::input
+```lean
+
+```
+:::
+```lean
+QED
+```
+::::
+
+```lean
+Example "1.2.40"
+  Given: (X Y : Type) (P : X → Y → Prop)
+  Assume:
+  Conclusion: (∃ y : Y, ∀ x : X, P x y) ⇒ ∀ x : X, ∃ y : Y, P x y
+Proof:
+  Assume that ∃ y : Y, ∀ x : X, P x y
+  Since ∃ y : Y, ∀ x : X, P x y we get b such that ∀ x : X, P x b
+  Fix a
+  Let's prove that b works
+  Since ∀ x : X, P x b we conclude that P a b
+QED
+```
