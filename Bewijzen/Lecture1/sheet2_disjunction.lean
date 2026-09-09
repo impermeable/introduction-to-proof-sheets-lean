@@ -7,9 +7,7 @@ open Verbose.NameLess
 
 ## How to prove ∨-goal
 
-Proving disjunctions (1.1.15) uses a similar phrase `Let's prove that [statement]` to proving conjunctions (1.1.7), but without `first` and `next` keyword and, in contrast to conjunctions, just one of the two proposition has to be proven.
-
-To prove disjunctions we type `Let's prove that [statement]`, specifying either the left or right proposition, then demonstrate the proof of the chosen proposition.
+To prove disjunctions (1.1.15) we type `Let's prove that [statement]`, specifying either the left or right proposition, then demonstrate the proof of the chosen proposition.
 
 ```lean
 Example "1.1.18left"

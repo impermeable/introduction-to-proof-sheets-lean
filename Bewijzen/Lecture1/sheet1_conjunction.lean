@@ -9,7 +9,7 @@ open Verbose.NameLess
 # Introduction
 
 Welcome to the exercise sheets for Bewijzen in de Wiskunde.
-These sheets are designed to accompany the textbook Infinite Descent into Mathematics and are intended to help you learn the concepts through the use of Waterproof.
+These sheets are designed to accompany the textbook *Infinite Descent into Mathematics* and are intended to help you learn the concepts through the use of Waterproof.
 
 Whenever you have a question about a mathematical concept, refer to the textbook. If you have a question about how to use Waterproof, first check these sheets. If you are still unsure, ask your teacher.
 
@@ -19,11 +19,11 @@ Waterproof is software developed to construct and verify mathematical proofs usi
 
 These sheets include examples from the textbook as well as additional original examples. Exercises and examples taken directly from the textbook are named accordingly. For instance, the example below is named `1.1.1`, which corresponds to Example 1.1.1 in the textbook.
 
-Waterproof is designed to help you learn write mathematical proofs on paper. This means we purposefully do not include all recommended exercises from the course in Waterproof exercise sheets. Some examples are not in the book and are marked as "extra", and just meant to explain Waterproof syntax.
+Waterproof is designed to help you learn to write mathematical proofs on paper. This means we purposefully do not include all recommended exercises from the course in Waterproof exercise sheets. Some examples are not in the book and are marked as "extra", and just meant to explain Waterproof syntax.
 
 Below is Example 1.1.1.
 In the textbook, this proof is presented step by step to show how assumptions and goals change throughout the process.
-Waterproof provides an overview of the current goal on the right side of the screen, under "We need to show" line.
+Waterproof provides an overview of the current goal on the right side of the screen, underneath the line that says "We need to show".
 The goal shown will update dynamically based on the position of your cursor in the proof.
 
 Use the example below to explore how the goal changes by clicking in the proof and moving your cursor up and down. The specific proof techniques used in this example will be explained in later sections.
@@ -45,8 +45,12 @@ QED
 ```
 ::::
 
-The language we use in Waterproof is "Verbose Lean", built on top of the Lean proof assistant. You can find the specific phrases you can use in this language in the examples or by clicking the Waterproof droplet to the left and then clicking the "Tactics" button.
 
+You can find the specific phrases you can use in this language in the examples or by clicking the Waterproof droplet to the left and then clicking the "Tactics" button.
+
+:::hint "💡 Extra information"
+The language we use in Waterproof is "Verbose Lean", which is built on top of the Lean proof assistant.
+:::
 
 ---
 
@@ -56,7 +60,7 @@ The language we use in Waterproof is "Verbose Lean", built on top of the Lean pr
 
 To prove conjunctions we first type `Let's first prove that [left proposition]`, after which we demonstrate that the left proposition is true using a subproof. Then we type `Let's now prove that [right proposition]`, and demonstrate that the right proposition is true using another subproof.
 These subproofs begin with a bullet point, using `·` as bullet symbols.
-We conclude each subproof by typing `We conclude by hypothesis`, since each of the propositions `p`, `q` and `r` is included in our assumptions.
+We conclude each subproof by typing `We conclude by hypothesis`, since then each of the propositions `p`, `q` and `r` is included in our assumptions.
 
 The bullet symbol `·` can be inserted by typing `\.` and then pressing space or tab. Similarly, the `∧` symbol can be inserted by typing `\and`. You'll see more special symbols appear throughout the sheets, and each of those can be inserted using a combination that starts with `\`. To see how to write a specific symbol, open the Waterproof menu on the left, then the "Symbols" panel, and hover over a symbol.
 
@@ -78,8 +82,8 @@ QED
 ## How to use ∧-assumption
 
 Below is how to use a conjunction in an assumption (Strategy 1.1.10) in Waterproof.
-The line `Since p ∧ q we get that p and q` uses the assumed conjunction to derive and add two new propositions, `p` and `q`, to your assumptions.
-This line works not only with conjunctions, it can be used more generally to derive new propositions.
+The line `Since p ∧ q we get that p and q` uses the assumed conjunction to derive two new propositions, `p` and `q`, which it adds to your assumptions.
+This line works not only with conjunctions: it can be used more generally to derive new propositions.
 For example, `Since A1, A2 and A3 we get that B1 and B2` checks if propositions B1 and B2 follow in one step from A1, A2 and A3.
 
 Writing `Since q and p we conclude that q ∧ p` works similarly, it derives propositions in one step.
