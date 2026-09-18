@@ -1,4 +1,3 @@
-import Bewijzen.Check_sqrt
 import Bewijzen.Customlib
 import Bewijzen.Customlib.CustomTactics
 import Bewijzen.Customlib.Functions
